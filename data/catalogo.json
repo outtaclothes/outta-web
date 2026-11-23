@@ -1,0 +1,1870 @@
+{
+ "actualizado": "2026-11-15",
+ "piezas": [
+  {
+   "id": "sakura-indigo",
+   "n": "Sakura Indigo",
+   "cat": "Pantalones",
+   "col": "Sakura",
+   "p": 150000,
+   "c": null,
+   "v": [
+    {
+     "t": "Única",
+     "q": 5
+    }
+   ],
+   "d": "Pantalón color azul índigo de silueta wide leg, elaborado en tejido tipo denim, con pretina parcialmente elástica, pasadores, cierre frontal y bolsillos delanteros y posteriores. Presenta un bordado de ramas negras y flores rojas en la parte inferior de una de las piernas.",
+   "m": {
+    "h": [
+     "Única"
+    ],
+    "r": [
+     [
+      "Cintura",
+      "39–46"
+     ],
+     [
+      "Largo",
+      "105"
+     ],
+     [
+      "Bota",
+      "30"
+     ],
+     [
+      "Pierna",
+      "26"
+     ]
+    ]
+   },
+   "w": 617,
+   "h": 1040,
+   "g": [
+    {
+     "n": 1,
+     "w": 1024,
+     "h": 1536
+    },
+    {
+     "n": 2,
+     "w": 1067,
+     "h": 1600
+    },
+    {
+     "n": 3,
+     "w": 1067,
+     "h": 1600
+    },
+    {
+     "n": 4,
+     "w": 1067,
+     "h": 1600
+    },
+    {
+     "n": 5,
+     "w": 1067,
+     "h": 1600
+    },
+    {
+     "n": 6,
+     "w": 1067,
+     "h": 1600
+    }
+   ],
+   "k": [
+    "Denim índigo, silueta wide leg",
+    "Pretina parcialmente elástica con pasadores",
+    "Bordado de ramas negras y flores rojas en la parte baja de una pierna"
+   ]
+  },
+  {
+   "id": "sakura-noir",
+   "n": "Sakura Noir",
+   "cat": "Pantalones",
+   "col": "Sakura",
+   "p": 150000,
+   "c": null,
+   "v": [
+    {
+     "t": "Única",
+     "q": 6
+    }
+   ],
+   "d": "Pantalón color negro lavado de molde wide leg, con pretina parcialmente elástica, pasadores, cierre frontal y bolsillos delanteros y posteriores. Intervenido con bordado floral rojo de ramas oscuras sobre la parte inferior de una de las piernas, en contraste con el tono de la tela.",
+   "m": {
+    "h": [
+     "Única"
+    ],
+    "r": [
+     [
+      "Cintura",
+      "39–46"
+     ],
+     [
+      "Largo",
+      "105"
+     ],
+     [
+      "Bota",
+      "30"
+     ],
+     [
+      "Pierna",
+      "26"
+     ]
+    ]
+   },
+   "w": 597,
+   "h": 1040,
+   "g": [
+    {
+     "n": 1,
+     "w": 1024,
+     "h": 1536
+    },
+    {
+     "n": 2,
+     "w": 1067,
+     "h": 1600
+    },
+    {
+     "n": 3,
+     "w": 1067,
+     "h": 1600
+    },
+    {
+     "n": 4,
+     "w": 1067,
+     "h": 1600
+    },
+    {
+     "n": 5,
+     "w": 1067,
+     "h": 1600
+    }
+   ],
+   "k": [
+    "Negro lavado, molde wide leg",
+    "Pretina parcialmente elástica con pasadores",
+    "Bordado floral rojo de ramas oscuras en la parte baja de una pierna"
+   ]
+  },
+  {
+   "id": "sakura-sand",
+   "n": "Sakura Sand",
+   "cat": "Pantalones",
+   "col": "Sakura",
+   "p": 150000,
+   "c": null,
+   "v": [
+    {
+     "t": "Única",
+     "q": 4
+    }
+   ],
+   "d": "Pantalón color beige arena de silueta wide leg, con pretina parcialmente elástica, pasadores, cierre frontal de botón y bolsillos delanteros y posteriores. Incorpora un bordado de flores rojas y ramas negras en la parte inferior de una de las piernas, destacando sobre la base clara.",
+   "m": {
+    "h": [
+     "Única"
+    ],
+    "r": [
+     [
+      "Cintura",
+      "39–49"
+     ],
+     [
+      "Largo",
+      "105"
+     ],
+     [
+      "Bota",
+      "30"
+     ],
+     [
+      "Pierna",
+      "29"
+     ]
+    ]
+   },
+   "w": 647,
+   "h": 1040,
+   "g": [
+    {
+     "n": 1,
+     "w": 1024,
+     "h": 1536
+    },
+    {
+     "n": 2,
+     "w": 1067,
+     "h": 1600
+    },
+    {
+     "n": 3,
+     "w": 1067,
+     "h": 1600
+    },
+    {
+     "n": 4,
+     "w": 1067,
+     "h": 1600
+    }
+   ],
+   "k": [
+    "Beige arena, silueta wide leg",
+    "Pretina parcialmente elástica y cierre frontal de botón",
+    "Bordado de flores rojas y ramas negras en la parte baja de una pierna"
+   ]
+  },
+  {
+   "id": "chaqueta-ghetto-gospel",
+   "n": "Cathedral Jacket",
+   "cat": "Chaquetas",
+   "col": "Ghetto Gospel",
+   "p": 135000,
+   "c": 200000,
+   "v": [
+    {
+     "t": "S-M",
+     "q": 2
+    },
+    {
+     "t": "L-XL",
+     "q": 5
+    }
+   ],
+   "d": "Chaqueta Cathedral color blanco de molde oversized, elaborada en drill de algodón de peso medio, con cuello camisero, mangas desmontables, cierre frontal cubierto, broches metálicos, cuatro bolsillos de parche y costuras negras de contraste. Intervenida en espalda con estampado arquitectónico negro de gran formato y etiqueta OUTTA bajo el cuello.",
+   "m": {
+    "h": [
+     "S-M",
+     "L-XL"
+    ],
+    "r": [
+     [
+      "Espalda",
+      "60",
+      "61"
+     ],
+     [
+      "Largo",
+      "67",
+      "71"
+     ],
+     [
+      "Manga",
+      "55",
+      "58"
+     ]
+    ]
+   },
+   "w": 820,
+   "h": 797,
+   "g": [
+    {
+     "n": 1,
+     "w": 1086,
+     "h": 1448
+    },
+    {
+     "n": 2,
+     "w": 1086,
+     "h": 1448
+    },
+    {
+     "n": 3,
+     "w": 1086,
+     "h": 1448
+    },
+    {
+     "n": 4,
+     "w": 1086,
+     "h": 1448
+    },
+    {
+     "n": 5,
+     "w": 1086,
+     "h": 1448
+    },
+    {
+     "n": 6,
+     "w": 1122,
+     "h": 1402
+    }
+   ],
+   "k": [
+    "Drill de algodón de peso medio, molde oversized",
+    "Mangas desmontables",
+    "Cierre frontal cubierto y broches metálicos",
+    "Cuatro bolsillos de parche con costuras negras de contraste",
+    "Estampado arquitectónico negro de gran formato en la espalda"
+   ]
+  },
+  {
+   "id": "pantalon-ghetto-gospel",
+   "n": "Cathedral Pants",
+   "cat": "Pantalones",
+   "col": "Ghetto Gospel",
+   "p": 100000,
+   "c": 150000,
+   "v": [
+    {
+     "t": "S-M",
+     "q": 5
+    },
+    {
+     "t": "L-XL",
+     "q": 10
+    },
+    {
+     "t": "Única",
+     "q": 1
+    }
+   ],
+   "d": "Pantalón Cathedral color blanco de molde wide leg, elaborado en drill de algodón de estructura media, con pretina fija, bolsillos posteriores, costuras negras de contraste y etiqueta OUTTA en cintura, bota modificable con cremalleras laterales. Intervenido en la parte posterior de ambas piernas con estampados arquitectónicos negros.",
+   "m": {
+    "h": [
+     "S-M",
+     "L-XL",
+     "Única"
+    ],
+    "r": [
+     [
+      "Cintura",
+      "47",
+      "49",
+      "48"
+     ],
+     [
+      "Largo",
+      "105",
+      "105",
+      "92"
+     ],
+     [
+      "Bota",
+      "24–30",
+      "24–30",
+      "24–30"
+     ]
+    ]
+   },
+   "w": 633,
+   "h": 1040,
+   "g": [
+    {
+     "n": 1,
+     "w": 1024,
+     "h": 1536
+    },
+    {
+     "n": 2,
+     "w": 1024,
+     "h": 1536
+    },
+    {
+     "n": 3,
+     "w": 1086,
+     "h": 1448
+    },
+    {
+     "n": 4,
+     "w": 1086,
+     "h": 1448
+    }
+   ],
+   "k": [
+    "Drill de algodón, molde wide leg",
+    "Bota modificable con cremalleras laterales",
+    "Costuras negras de contraste",
+    "Estampados arquitectónicos en la parte posterior de ambas piernas"
+   ]
+  },
+  {
+   "id": "pantalon-hojas-unisex",
+   "n": "Terra Cargo",
+   "cat": "Pantalones",
+   "col": "New Terra",
+   "p": 90000,
+   "c": 120000,
+   "v": [
+    {
+     "t": "S-M",
+     "q": 5
+    },
+    {
+     "t": "L-XL",
+     "q": 4
+    },
+    {
+     "t": "Única",
+     "q": 9
+    }
+   ],
+   "d": "Pantalón Terra en tonos beige de molde cargo recto, elaborado mediante combinación de tejidos estampados con motivos botánicos, con pretina fija, cierre frontal, pasadores y bolsillos laterales con solapa. Su construcción combina paneles contrastantes en ambas piernas.",
+   "m": {
+    "h": [
+     "S-M",
+     "L-XL",
+     "Única"
+    ],
+    "r": [
+     [
+      "Cintura",
+      "42",
+      "46",
+      "47"
+     ],
+     [
+      "Largo",
+      "110",
+      "105",
+      "105"
+     ],
+     [
+      "Bota",
+      "30",
+      "30",
+      "30"
+     ]
+    ]
+   },
+   "w": 545,
+   "h": 1040,
+   "g": [
+    {
+     "n": 1,
+     "w": 1024,
+     "h": 1536
+    },
+    {
+     "n": 2,
+     "w": 1073,
+     "h": 1600
+    },
+    {
+     "n": 3,
+     "w": 1073,
+     "h": 1600
+    },
+    {
+     "n": 4,
+     "w": 1073,
+     "h": 1600
+    },
+    {
+     "n": 5,
+     "w": 1073,
+     "h": 1600
+    },
+    {
+     "n": 6,
+     "w": 1073,
+     "h": 1600
+    }
+   ],
+   "k": [
+    "Combinación de tejidos estampados con motivos botánicos",
+    "Paneles contrastantes en ambas piernas",
+    "Bolsillos laterales con solapa"
+   ]
+  },
+  {
+   "id": "chaqueta-hojas-unisex",
+   "n": "Canopy Jacket",
+   "cat": "Chaquetas",
+   "col": "New Terra",
+   "p": 90000,
+   "c": 100000,
+   "v": [
+    {
+     "t": "Única",
+     "q": 2
+    }
+   ],
+   "d": "Chaqueta Canopy color beige de molde relajado y largo regular, elaborada en tejido estructurado con estampado botánico integral, con cuello camisero, cierre frontal, manga larga y logotipo Outta bordado sobre el pecho.",
+   "m": {
+    "h": [
+     "Única"
+    ],
+    "r": [
+     [
+      "Espalda",
+      "55"
+     ],
+     [
+      "Largo",
+      "80"
+     ],
+     [
+      "Manga",
+      "58"
+     ]
+    ]
+   },
+   "w": 820,
+   "h": 621,
+   "g": [
+    {
+     "n": 1,
+     "w": 1024,
+     "h": 1536
+    },
+    {
+     "n": 2,
+     "w": 1073,
+     "h": 1600
+    },
+    {
+     "n": 3,
+     "w": 1067,
+     "h": 1600
+    }
+   ],
+   "k": [
+    "Tejido estructurado con estampado botánico integral",
+    "Cuello camisero y cierre frontal",
+    "Logotipo bordado en el pecho"
+   ]
+  },
+  {
+   "id": "chaqueta-hojas-mujer-crop",
+   "n": "Canopy Crop",
+   "cat": "Chaquetas",
+   "col": "New Terra",
+   "p": 85000,
+   "c": 100000,
+   "v": [
+    {
+     "t": "Única",
+     "q": 0
+    }
+   ],
+   "d": "Chaqueta cropped Canopy color beige de molde recto corte crop, elaborada en tejido estructurado con estampado integral de hojas, con cuello camisero, cierre frontal, manga larga y logotipo Outta bordado en tono café sobre el pecho.",
+   "m": {
+    "h": [
+     "Única"
+    ],
+    "r": [
+     [
+      "Espalda",
+      "45"
+     ],
+     [
+      "Largo",
+      "43"
+     ],
+     [
+      "Manga",
+      "52"
+     ]
+    ]
+   },
+   "w": 820,
+   "h": 768,
+   "g": [
+    {
+     "n": 1,
+     "w": 1024,
+     "h": 1536
+    },
+    {
+     "n": 2,
+     "w": 1073,
+     "h": 1600
+    },
+    {
+     "n": 3,
+     "w": 1073,
+     "h": 1600
+    }
+   ],
+   "k": [
+    "Corte crop recto",
+    "Estampado integral de hojas",
+    "Logotipo bordado en tono café en el pecho"
+   ]
+  },
+  {
+   "id": "camiseta-marron-unisex",
+   "n": "Desert Tee",
+   "cat": "Camisas y tees",
+   "col": "New Terra",
+   "p": 50000,
+   "c": 70000,
+   "v": [
+    {
+     "t": "Única",
+     "q": 2
+    }
+   ],
+   "d": "Camiseta Desert color arena de molde regular, elaborada en jersey de algodón de peso medio, con cuello redondo acanalado, manga corta y logotipo Outta bordado en hilo vinotinto sobre el pecho.",
+   "m": {
+    "h": [
+     "Única"
+    ],
+    "r": [
+     [
+      "Espalda",
+      "60"
+     ],
+     [
+      "Largo",
+      "73"
+     ]
+    ]
+   },
+   "w": 820,
+   "h": 830,
+   "g": [
+    {
+     "n": 1,
+     "w": 1086,
+     "h": 1448
+    },
+    {
+     "n": 2,
+     "w": 1073,
+     "h": 1600
+    },
+    {
+     "n": 3,
+     "w": 1073,
+     "h": 1600
+    }
+   ],
+   "k": [
+    "Jersey de algodón de peso medio",
+    "Cuello redondo acanalado",
+    "Logotipo bordado en hilo vinotinto"
+   ]
+  },
+  {
+   "id": "chaqueta-deconstructor-negra-con-blanco",
+   "n": "Outline Utility",
+   "cat": "Chaquetas",
+   "col": "Noir Code",
+   "p": 110000,
+   "c": 160000,
+   "v": [
+    {
+     "t": "Única",
+     "q": 2
+    }
+   ],
+   "d": "Chaqueta Outline Utility color negro de molde oversized, elaborada en drill de algodón de peso medio, con cuello alto, cierre metálico frontal, manga corta, cuatro bolsillos de parche y costuras blancas de contraste en toda la construcción.",
+   "m": {
+    "h": [
+     "Única"
+    ],
+    "r": [
+     [
+      "Espalda",
+      "60"
+     ],
+     [
+      "Largo",
+      "54"
+     ],
+     [
+      "Manga",
+      "20"
+     ]
+    ]
+   },
+   "w": 820,
+   "h": 739,
+   "g": [
+    {
+     "n": 1,
+     "w": 1024,
+     "h": 1536
+    },
+    {
+     "n": 2,
+     "w": 1073,
+     "h": 1600
+    },
+    {
+     "n": 3,
+     "w": 687,
+     "h": 1024
+    },
+    {
+     "n": 4,
+     "w": 687,
+     "h": 1024
+    }
+   ],
+   "k": [
+    "Drill de algodón, molde oversized",
+    "Costuras blancas de contraste en toda la construcción",
+    "Cuatro bolsillos de parche y cierre metálico"
+   ]
+  },
+  {
+   "id": "chaqueta-desconstructor-negra",
+   "n": "Shadow Utility",
+   "cat": "Chaquetas",
+   "col": "Noir Code",
+   "p": 90000,
+   "c": 140000,
+   "v": [
+    {
+     "t": "Única",
+     "q": 4
+    }
+   ],
+   "d": "Chaqueta Shadow Utility color negro de molde oversized, elaborada en drill de algodón de estructura media, con cuello alto, cierre metálico frontal de doble vía, manga corta y cuatro bolsillos de parche con pespuntes tonales.",
+   "m": {
+    "h": [
+     "Única"
+    ],
+    "r": [
+     [
+      "Espalda",
+      "55"
+     ],
+     [
+      "Largo",
+      "50"
+     ],
+     [
+      "Manga",
+      "17"
+     ]
+    ]
+   },
+   "w": 820,
+   "h": 772,
+   "g": [
+    {
+     "n": 1,
+     "w": 1024,
+     "h": 1536
+    },
+    {
+     "n": 2,
+     "w": 959,
+     "h": 1459
+    },
+    {
+     "n": 3,
+     "w": 1073,
+     "h": 1600
+    }
+   ],
+   "k": [
+    "Drill de algodón, molde oversized",
+    "Cierre metálico de doble vía",
+    "Cuatro bolsillos de parche con pespuntes tonales"
+   ]
+  },
+  {
+   "id": "pantalon-negro-unisex",
+   "n": "Noir Wide",
+   "cat": "Pantalones",
+   "col": "Noir Code",
+   "p": 90000,
+   "c": 120000,
+   "v": [
+    {
+     "t": "S-M",
+     "q": 5
+    },
+    {
+     "t": "L-XL",
+     "q": 4
+    },
+    {
+     "t": "Única",
+     "q": 5
+    }
+   ],
+   "d": "Pantalón Noir color negro de molde extra wide leg, elaborado en tejido drill pesado de caída fluida, con pretina estructurada, pasadores, bolsillos delanteros y paneles verticales que amplían el volumen de las piernas.",
+   "m": {
+    "h": [
+     "S-M",
+     "L-XL",
+     "Única"
+    ],
+    "r": [
+     [
+      "Cintura",
+      "43",
+      "45",
+      "37–46"
+     ],
+     [
+      "Largo",
+      "110",
+      "105",
+      "105"
+     ],
+     [
+      "Bota",
+      "30",
+      "30",
+      "30"
+     ]
+    ]
+   },
+   "w": 591,
+   "h": 1040,
+   "g": [
+    {
+     "n": 1,
+     "w": 1024,
+     "h": 1536
+    },
+    {
+     "n": 2,
+     "w": 1062,
+     "h": 1600
+    },
+    {
+     "n": 3,
+     "w": 1053,
+     "h": 1600
+    },
+    {
+     "n": 4,
+     "w": 1195,
+     "h": 1600
+    },
+    {
+     "n": 5,
+     "w": 1195,
+     "h": 1600
+    },
+    {
+     "n": 6,
+     "w": 1195,
+     "h": 1600
+    }
+   ],
+   "k": [
+    "Drill pesado de caída fluida, extra wide leg",
+    "Paneles verticales que amplían el volumen de las piernas"
+   ]
+  },
+  {
+   "id": "blusa-rave",
+   "n": "Eclipse Top",
+   "cat": "Tops",
+   "col": "Noir Code",
+   "p": 45000,
+   "c": 70000,
+   "v": [
+    {
+     "t": "S-M",
+     "q": 10
+    },
+    {
+     "t": "L-XL",
+     "q": 8
+    }
+   ],
+   "d": "Top cropped Eclipse color negro, de silueta ajustada y manga larga, elaborado en tejido de punto elástico de tacto suave, con cuello alto abotonado, abertura frontal tipo cut-out y construcción cruzada en delantero.",
+   "m": {
+    "h": [
+     "S-M",
+     "L-XL"
+    ],
+    "r": [
+     [
+      "Espalda",
+      "34",
+      "38"
+     ],
+     [
+      "Largo",
+      "25",
+      "27"
+     ],
+     [
+      "Manga",
+      "52",
+      "55"
+     ]
+    ]
+   },
+   "w": 788,
+   "h": 991,
+   "g": [
+    {
+     "n": 1,
+     "w": 1086,
+     "h": 1448
+    },
+    {
+     "n": 2,
+     "w": 832,
+     "h": 1248
+    },
+    {
+     "n": 3,
+     "w": 832,
+     "h": 1248
+    }
+   ],
+   "k": [
+    "Punto elástico, silueta ajustada",
+    "Abertura frontal tipo cut-out",
+    "Construcción cruzada en el delantero y cuello alto abotonado"
+   ]
+  },
+  {
+   "id": "pantalon-azul-unisex",
+   "n": "Indigo Cargo",
+   "cat": "Pantalones",
+   "col": "Piezas sueltas",
+   "p": 100000,
+   "c": 140000,
+   "v": [
+    {
+     "t": "S-M",
+     "q": 0
+    },
+    {
+     "t": "L-XL",
+     "q": 2
+    }
+   ],
+   "d": "Pantalón Indigo color azul de molde cargo wide leg, elaborado en tejido jacquard con patrón geométrico integral, con pretina estructurada, bolsillos delanteros y bolsillos laterales con solapa. Incluye logotipo Outta bordado en blanco sobre uno de los bolsillos.",
+   "m": {
+    "h": [
+     "S-M",
+     "L-XL"
+    ],
+    "r": [
+     [
+      "Cintura",
+      "38",
+      "48"
+     ],
+     [
+      "Largo",
+      "105",
+      "105"
+     ],
+     [
+      "Bota",
+      "26",
+      "26"
+     ]
+    ]
+   },
+   "w": 617,
+   "h": 1040,
+   "g": [
+    {
+     "n": 1,
+     "w": 1024,
+     "h": 1536
+    },
+    {
+     "n": 2,
+     "w": 1073,
+     "h": 1600
+    },
+    {
+     "n": 3,
+     "w": 1073,
+     "h": 1600
+    },
+    {
+     "n": 4,
+     "w": 1073,
+     "h": 1600
+    },
+    {
+     "n": 5,
+     "w": 1073,
+     "h": 1600
+    }
+   ],
+   "k": [
+    "Jacquard con patrón geométrico integral, cargo wide leg",
+    "Bolsillos laterales con solapa",
+    "Logotipo bordado en blanco sobre un bolsillo"
+   ]
+  },
+  {
+   "id": "pantalo-vaquero-unisex",
+   "n": "Mono Pants",
+   "cat": "Pantalones",
+   "col": "Piezas sueltas",
+   "p": 90000,
+   "c": 120000,
+   "v": [
+    {
+     "t": "S-M",
+     "q": 0
+    },
+    {
+     "t": "L-XL",
+     "q": 0
+    }
+   ],
+   "d": "Pantalón Mono color negro y blanco de molde wide leg, elaborado en tejido plano con estampado gráfico integral, con pretina fija, cierre frontal, pasadores y bolsillos delanteros. Presenta una silueta recta y amplia de largo completo.",
+   "m": {
+    "h": [
+     "S-M",
+     "L-XL"
+    ],
+    "r": [
+     [
+      "Cintura",
+      "42",
+      "45"
+     ],
+     [
+      "Largo",
+      "105",
+      "105"
+     ],
+     [
+      "Bota",
+      "30",
+      "30"
+     ]
+    ]
+   },
+   "w": 618,
+   "h": 1040,
+   "g": [
+    {
+     "n": 1,
+     "w": 1024,
+     "h": 1536
+    },
+    {
+     "n": 2,
+     "w": 1073,
+     "h": 1600
+    },
+    {
+     "n": 3,
+     "w": 1073,
+     "h": 1600
+    },
+    {
+     "n": 4,
+     "w": 1073,
+     "h": 1600
+    },
+    {
+     "n": 5,
+     "w": 1073,
+     "h": 1600
+    },
+    {
+     "n": 6,
+     "w": 1038,
+     "h": 1600
+    },
+    {
+     "n": 7,
+     "w": 1073,
+     "h": 1600
+    }
+   ],
+   "k": [
+    "Tejido plano con estampado gráfico integral",
+    "Silueta recta y amplia de largo completo"
+   ]
+  },
+  {
+   "id": "parachute-unisex",
+   "n": "Grid Parachute",
+   "cat": "Pantalones",
+   "col": "Piezas sueltas",
+   "p": 60000,
+   "c": null,
+   "v": [
+    {
+     "t": "S-M",
+     "q": 11
+    },
+    {
+     "t": "L-XL",
+     "q": 10
+    }
+   ],
+   "d": "Pantalón Grid color blanco y negro de molde parachute oversized, elaborado en tejido ligero antifluidos con estampado geométrico integral, con cintura elástica, pierna amplia y terminaciones ajustables en los bajos.",
+   "m": {
+    "h": [
+     "S-M",
+     "L-XL"
+    ],
+    "r": [
+     [
+      "Cintura",
+      "30–43",
+      "34–49"
+     ],
+     [
+      "Largo",
+      "98",
+      "107"
+     ],
+     [
+      "Bota",
+      "24–32",
+      "24–32"
+     ]
+    ]
+   },
+   "w": 611,
+   "h": 1040,
+   "g": [
+    {
+     "n": 1,
+     "w": 1122,
+     "h": 1402
+    },
+    {
+     "n": 2,
+     "w": 1073,
+     "h": 1600
+    },
+    {
+     "n": 3,
+     "w": 1073,
+     "h": 1600
+    },
+    {
+     "n": 4,
+     "w": 1195,
+     "h": 1600
+    },
+    {
+     "n": 5,
+     "w": 1073,
+     "h": 1600
+    },
+    {
+     "n": 6,
+     "w": 1073,
+     "h": 1600
+    }
+   ],
+   "k": [
+    "Tejido ligero antifluidos con estampado geométrico",
+    "Cintura elástica",
+    "Bajos con terminación ajustable"
+   ]
+  },
+  {
+   "id": "lenadora",
+   "n": "Amber Overshirt",
+   "cat": "Camisas y tees",
+   "col": "Piezas sueltas",
+   "p": 100000,
+   "c": null,
+   "v": [
+    {
+     "t": "Única",
+     "q": 0
+    }
+   ],
+   "d": "Sobrecamisa Amber de cuadros en tonos mostaza, blanco y café, de molde oversized, elaborada en tejido afelpado de peso medio, con cuello camisero, cierre frontal de botones tipo cuerno, dos bolsillos con solapa y logotipo Outta bordado en hilo mostaza sobre el pecho.",
+   "m": null,
+   "w": 820,
+   "h": 864,
+   "g": [
+    {
+     "n": 1,
+     "w": 1024,
+     "h": 1536
+    },
+    {
+     "n": 2,
+     "w": 1073,
+     "h": 1600
+    },
+    {
+     "n": 3,
+     "w": 1073,
+     "h": 1600
+    },
+    {
+     "n": 4,
+     "w": 995,
+     "h": 1600
+    },
+    {
+     "n": 5,
+     "w": 1073,
+     "h": 1600
+    }
+   ],
+   "k": [
+    "Tejido afelpado de cuadros, molde oversized",
+    "Botones tipo cuerno",
+    "Dos bolsillos con solapa y logotipo bordado en hilo mostaza"
+   ]
+  },
+  {
+   "id": "polo",
+   "n": "Sandline Polo",
+   "cat": "Camisas y tees",
+   "col": "Paradoja",
+   "p": 79900,
+   "c": null,
+   "v": [
+    {
+     "t": "S",
+     "q": 6
+    },
+    {
+     "t": "M",
+     "q": 7
+    },
+    {
+     "t": "L",
+     "q": 7
+    }
+   ],
+   "d": "Polo manga corta color crema de silueta regular, elaborado en tejido texturizado con relieve diagonal tipo rib suave. Cuenta con cuello clásico, pechera frontal de tres botones en tono natural, ruedo ligeramente curvo y placa dorada OUTTA ubicada en la parte inferior derecha.",
+   "m": {
+    "h": [
+     "S",
+     "M",
+     "L"
+    ],
+    "r": [
+     [
+      "Espalda",
+      "48",
+      "50",
+      "52"
+     ],
+     [
+      "Largo",
+      "68",
+      "70",
+      "72"
+     ]
+    ]
+   },
+   "w": 820,
+   "h": 807,
+   "g": [
+    {
+     "n": 1,
+     "w": 1122,
+     "h": 1402
+    },
+    {
+     "n": 2,
+     "w": 1280,
+     "h": 1600
+    },
+    {
+     "n": 3,
+     "w": 1280,
+     "h": 1600
+    },
+    {
+     "n": 4,
+     "w": 1280,
+     "h": 1600
+    },
+    {
+     "n": 5,
+     "w": 1122,
+     "h": 1402
+    }
+   ],
+   "k": [
+    "Tejido texturizado con relieve diagonal tipo rib",
+    "Pechera de tres botones",
+    "Placa dorada OUTTA en la parte inferior derecha"
+   ]
+  },
+  {
+   "id": "sobrecamisa",
+   "n": "Raw Edge Shirt",
+   "cat": "Camisas y tees",
+   "col": "Paradoja",
+   "p": 79900,
+   "c": null,
+   "v": [
+    {
+     "t": "S",
+     "q": 1
+    },
+    {
+     "t": "M",
+     "q": 4
+    },
+    {
+     "t": "L",
+     "q": 3
+    }
+   ],
+   "d": "Camisa manga corta color marfil de silueta recta, elaborada en tejido texturizado tipo panal con acabado suave y estructura ligera. Presenta cuello clásico, abertura frontal con sesgo central en tono beige de textura espigada y cierre limpio sin botones visibles. La marquilla se ubica en la parte trasera.",
+   "m": {
+    "h": [
+     "S",
+     "M",
+     "L"
+    ],
+    "r": [
+     [
+      "Espalda",
+      "50",
+      "52",
+      "54"
+     ],
+     [
+      "Largo",
+      "58",
+      "60",
+      "62"
+     ]
+    ]
+   },
+   "w": 820,
+   "h": 806,
+   "g": [
+    {
+     "n": 1,
+     "w": 1122,
+     "h": 1402
+    },
+    {
+     "n": 2,
+     "w": 1280,
+     "h": 1600
+    },
+    {
+     "n": 3,
+     "w": 1280,
+     "h": 1600
+    },
+    {
+     "n": 4,
+     "w": 1280,
+     "h": 1600
+    },
+    {
+     "n": 5,
+     "w": 1280,
+     "h": 1600
+    },
+    {
+     "n": 6,
+     "w": 1280,
+     "h": 1600
+    }
+   ],
+   "k": [
+    "Tejido tipo panal de estructura ligera",
+    "Sesgo central en tono beige de textura espigada",
+    "Cierre limpio sin botones visibles"
+   ]
+  },
+  {
+   "id": "camiseta-crop-blanca-hombre",
+   "n": "Aurum Tee",
+   "cat": "Camisas y tees",
+   "col": "Piezas sueltas",
+   "p": 55000,
+   "c": 80000,
+   "v": [
+    {
+     "t": "Única",
+     "q": 1
+    }
+   ],
+   "d": "Camiseta Aurum color blanco de molde boxy-fit, elaborada en tejido de algodón de tacto suave, con cuello redondo texturizado, manga corta y logotipo OUTTA bordado en hilo dorado o negro sobre el pecho.",
+   "m": {
+    "h": [
+     "Única"
+    ],
+    "r": [
+     [
+      "Espalda",
+      "60"
+     ],
+     [
+      "Largo",
+      "58"
+     ]
+    ]
+   },
+   "w": 820,
+   "h": 824,
+   "g": [
+    {
+     "n": 1,
+     "w": 1024,
+     "h": 1536
+    },
+    {
+     "n": 2,
+     "w": 1073,
+     "h": 1600
+    },
+    {
+     "n": 3,
+     "w": 1073,
+     "h": 1600
+    }
+   ],
+   "k": [
+    "Algodón, molde boxy-fit",
+    "Cuello redondo texturizado",
+    "Logotipo bordado en hilo dorado o negro"
+   ]
+  },
+  {
+   "id": "camiseta-marfil-unisex",
+   "n": "Ivory Tee",
+   "cat": "Camisas y tees",
+   "col": "Piezas sueltas",
+   "p": 50000,
+   "c": 70000,
+   "v": [
+    {
+     "t": "Única",
+     "q": 4
+    }
+   ],
+   "d": "Camiseta Ivory color marfil de molde relajado, elaborada en jersey de algodón con textura ligeramente afelpada, cuello redondo, manga corta y logotipo Outta bordado en tono dorado sobre el pecho.",
+   "m": {
+    "h": [
+     "Única"
+    ],
+    "r": [
+     [
+      "Espalda",
+      "60"
+     ],
+     [
+      "Largo",
+      "68"
+     ]
+    ]
+   },
+   "w": 820,
+   "h": 858,
+   "g": [
+    {
+     "n": 1,
+     "w": 1024,
+     "h": 1536
+    },
+    {
+     "n": 2,
+     "w": 1067,
+     "h": 1600
+    }
+   ],
+   "k": [
+    "Jersey con textura ligeramente afelpada",
+    "Logotipo bordado en tono dorado"
+   ]
+  },
+  {
+   "id": "camiseta-blanca-crop-mujer",
+   "n": "Core Tee",
+   "cat": "Camisas y tees",
+   "col": "Piezas sueltas",
+   "p": 45000,
+   "c": 60000,
+   "opt": "Color",
+   "v": [
+    {
+     "t": "Black",
+     "q": 4
+    },
+    {
+     "t": "Gold",
+     "q": 5
+    }
+   ],
+   "d": "Camiseta Core color blanco de molde crop top, elaborada en jersey de algodón de peso medio, con cuello redondo reforzado, manga corta y logotipo OUTTA negro o dorado aplicado en el pecho.",
+   "m": {
+    "h": [
+     "Única"
+    ],
+    "r": [
+     [
+      "Espalda",
+      "54"
+     ],
+     [
+      "Largo",
+      "40"
+     ]
+    ]
+   },
+   "w": 820,
+   "h": 828,
+   "g": [
+    {
+     "n": 1,
+     "w": 1024,
+     "h": 1536
+    },
+    {
+     "n": 2,
+     "w": 1073,
+     "h": 1600
+    }
+   ],
+   "k": [
+    "Jersey de algodón de peso medio, molde crop",
+    "Cuello redondo reforzado",
+    "Logotipo negro o dorado aplicado en el pecho"
+   ]
+  }
+ ],
+ "looks": [
+  {
+   "id": "sakura-indigo",
+   "name": "Sakura Indigo",
+   "w": 403,
+   "h": 1300,
+   "pieces": [
+    {
+     "id": "camiseta-crop-blanca-hombre",
+     "x": 60,
+     "y": 30,
+     "z": [
+      8,
+      47
+     ]
+    },
+    {
+     "id": "sakura-indigo",
+     "x": 82,
+     "y": 85,
+     "z": [
+      47,
+      98
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sakura-noir",
+   "name": "Sakura Noir",
+   "w": 431,
+   "h": 1300,
+   "pieces": [
+    {
+     "id": "sakura-noir",
+     "x": 80,
+     "y": 88,
+     "z": [
+      39,
+      98
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sakura-sand",
+   "name": "Sakura Sand",
+   "w": 434,
+   "h": 1300,
+   "pieces": [
+    {
+     "id": "camiseta-crop-blanca-hombre",
+     "x": 62,
+     "y": 30,
+     "z": [
+      8,
+      50
+     ]
+    },
+    {
+     "id": "sakura-sand",
+     "x": 75,
+     "y": 86,
+     "z": [
+      50,
+      98
+     ]
+    }
+   ]
+  },
+  {
+   "id": "terra-h",
+   "name": "Desert Tee + Terra Cargo",
+   "w": 567,
+   "h": 1300,
+   "pieces": [
+    {
+     "id": "camiseta-marron-unisex",
+     "x": 42,
+     "y": 27,
+     "z": [
+      6,
+      47
+     ]
+    },
+    {
+     "id": "pantalon-hojas-unisex",
+     "x": 38,
+     "y": 70,
+     "z": [
+      47,
+      97
+     ]
+    }
+   ]
+  },
+  {
+   "id": "outline-noir",
+   "name": "Outline Utility + Noir Wide",
+   "w": 477,
+   "h": 1300,
+   "pieces": [
+    {
+     "id": "chaqueta-deconstructor-negra-con-blanco",
+     "x": 50,
+     "y": 26,
+     "z": [
+      6,
+      45
+     ]
+    },
+    {
+     "id": "pantalon-negro-unisex",
+     "x": 50,
+     "y": 70,
+     "z": [
+      45,
+      97
+     ]
+    }
+   ]
+  },
+  {
+   "id": "grid",
+   "name": "Eclipse Top + Grid Parachute",
+   "w": 482,
+   "h": 1068,
+   "pieces": [
+    {
+     "id": "blusa-rave",
+     "x": 52,
+     "y": 25,
+     "z": [
+      6,
+      46
+     ]
+    },
+    {
+     "id": "parachute-unisex",
+     "x": 50,
+     "y": 70,
+     "z": [
+      46,
+      97
+     ]
+    }
+   ]
+  },
+  {
+   "id": "indigo",
+   "name": "Aurum Tee + Indigo Cargo",
+   "w": 468,
+   "h": 1300,
+   "pieces": [
+    {
+     "id": "camiseta-crop-blanca-hombre",
+     "x": 50,
+     "y": 32,
+     "z": [
+      6,
+      50
+     ]
+    },
+    {
+     "id": "pantalon-azul-unisex",
+     "x": 50,
+     "y": 72,
+     "z": [
+      50,
+      97
+     ]
+    }
+   ]
+  },
+  {
+   "id": "terra-m",
+   "name": "Canopy Crop + Terra Cargo",
+   "w": 481,
+   "h": 1179,
+   "pieces": [
+    {
+     "id": "chaqueta-hojas-mujer-crop",
+     "x": 50,
+     "y": 28,
+     "z": [
+      6,
+      44
+     ]
+    },
+    {
+     "id": "pantalon-hojas-unisex",
+     "x": 50,
+     "y": 70,
+     "z": [
+      44,
+      97
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cathedral",
+   "name": "Cathedral Jacket + Cathedral Pants",
+   "w": 824,
+   "h": 1080,
+   "pieces": [
+    {
+     "id": "chaqueta-ghetto-gospel",
+     "x": 27,
+     "y": 36,
+     "z": [
+      6,
+      50
+     ]
+    },
+    {
+     "id": "pantalon-ghetto-gospel",
+     "x": 27,
+     "y": 72,
+     "z": [
+      50,
+      97
+     ]
+    }
+   ]
+  },
+  {
+   "id": "core-noir",
+   "name": "Core Tee + Noir Wide",
+   "w": 446,
+   "h": 1155,
+   "pieces": [
+    {
+     "id": "camiseta-blanca-crop-mujer",
+     "x": 52,
+     "y": 27,
+     "z": [
+      6,
+      42
+     ]
+    },
+    {
+     "id": "pantalon-negro-unisex",
+     "x": 50,
+     "y": 68,
+     "z": [
+      42,
+      97
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mono",
+   "name": "Shadow Utility + Mono Pants",
+   "w": 496,
+   "h": 1226,
+   "pieces": [
+    {
+     "id": "chaqueta-desconstructor-negra",
+     "x": 50,
+     "y": 26,
+     "z": [
+      6,
+      44
+     ]
+    },
+    {
+     "id": "pantalo-vaquero-unisex",
+     "x": 50,
+     "y": 70,
+     "z": [
+      44,
+      97
+     ]
+    }
+   ]
+  },
+  {
+   "id": "amber",
+   "name": "Amber Overshirt + Noir Wide",
+   "w": 469,
+   "h": 1176,
+   "pieces": [
+    {
+     "id": "lenadora",
+     "x": 45,
+     "y": 32,
+     "z": [
+      6,
+      48
+     ]
+    },
+    {
+     "id": "pantalon-negro-unisex",
+     "x": 45,
+     "y": 70,
+     "z": [
+      48,
+      97
+     ]
+    }
+   ]
+  }
+ ],
+ "proxima": {
+  "bloqueada": true,
+  "nombre": "Próxima colección",
+  "frase": "[PENDIENTE: nombre y frase de la colección]",
+  "fecha": null,
+  "looks": [
+   {
+    "id": "n1",
+    "w": 149,
+    "h": 268
+   },
+   {
+    "id": "n2",
+    "w": 131,
+    "h": 268
+   },
+   {
+    "id": "n3",
+    "w": 141,
+    "h": 268
+   },
+   {
+    "id": "n4",
+    "w": 116,
+    "h": 268
+   },
+   {
+    "id": "n5",
+    "w": 159,
+    "h": 268
+   }
+  ]
+ },
+ "textos": {
+  "credito": "[PENDIENTE: crédito de la foto y de la pasarela]",
+  "envios": "[PENDIENTE: políticas, ciudades, tiempos y costos de envío]",
+  "contacto": "[PENDIENTE: número de WhatsApp y correo de atención]"
+ }
+}

@@ -645,7 +645,7 @@ dialog[open]~.wa{display:none}
 .igc{padding:4px 0}
 @media (max-width:900px){.vitrina .t3{left:138px}}
 </style>
-<script>window.VITRINA=true;window.VCFG={ig:"outta.__",wa:""};</script>
+<script>window.VITRINA=true;window.VCFG={ig:"outta.__",wa:"573105784965"};</script>
 </head>
 <body>
 <script>document.documentElement.classList.add('js')</script>
@@ -1387,7 +1387,7 @@ fetch('data/catalogo.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw 0;return 
 (()=>{
 const LS={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const DBK='outta-db-v1';
-const BASE={users:[],orders:[],seq:0,prod:{},cfg:{envBog:12000,envNac:18000,gratis:400000,pixel:'',owner:null,tx:{},wa:'',ig:'outta.__',nx:null},log:[],events:[],mov:[],cupones:[],avisos:[],msgs:[],reviews:[],agenda:[],diario:[],cols:{}};
+const BASE={users:[],orders:[],seq:0,prod:{},cfg:{envBog:12000,envNac:18000,gratis:400000,pixel:'',owner:null,tx:{},wa:'573105784965',ig:'outta.__',nx:null},log:[],events:[],mov:[],cupones:[],avisos:[],msgs:[],reviews:[],agenda:[],diario:[],cols:{}};
 let db=Object.assign(structuredClone(BASE),LS.get(DBK,{}));db.cfg=Object.assign(structuredClone(BASE.cfg),db.cfg||{});['cupones','avisos','msgs','reviews','agenda','diario'].forEach(k=>{if(!Array.isArray(db[k]))db[k]=[]});if(!db.cols||typeof db.cols!=='object')db.cols={};
 const saveDB=()=>LS.set(DBK,db);
 const now=()=>Date.now();
@@ -1401,7 +1401,7 @@ const DEPS=['Bogotá D.C.','Amazonas','Antioquia','Arauca','Atlántico','Bolíva
 const LEGAL={
 terminos:`TÉRMINOS Y CONDICIONES — BORRADOR
 
-Vendedor: OUTTA CLOTHES S.A.S. · NIT 901.787.107-5 · Calle 77 A # 99 B-36, Bogotá D.C. [PENDIENTE: confirmar que esta dirección se publica] · [PENDIENTE: teléfono de atención] · [PENDIENTE: correo de atención].
+Vendedor: OUTTA CLOTHES S.A.S. · NIT 901.787.107-5 · Calle 38 # 29-29, Bogotá D.C. · WhatsApp 310 578 4965 · clothesoutta@gmail.com.
 
 1. Precios en pesos colombianos (COP), con IVA incluido cuando aplique. El costo de envío se muestra antes de pagar.
 2. Antes de pagar verás el resumen completo del pedido: piezas, tallas, cantidades, envío y total.
@@ -1417,16 +1417,16 @@ Cambios por talla: [PENDIENTE: plazo y condiciones definidos por OUTTA].
 
 Reversión del pago (art. 51 y Decreto 587 de 2016): si fuiste víctima de fraude, la operación no fue solicitada, el producto no llegó o llegó defectuoso o diferente, puedes pedir la reversión dentro de los 5 días hábiles siguientes a conocer el hecho o recibir el producto, avisándonos a nosotros y al emisor de tu medio de pago.
 
-Cómo solicitarlo: desde "Mi cuenta → Pedidos" o escribiendo a [PENDIENTE: correo].`,
+Cómo solicitarlo: desde "Mi cuenta → Pedidos" o escribiendo a clothesoutta@gmail.com.`,
 privacidad:`POLÍTICA DE TRATAMIENTO DE DATOS — BORRADOR (Ley 1581 de 2012)
 
-Responsable: OUTTA CLOTHES S.A.S., NIT 901.787.107-5, Bogotá D.C. [PENDIENTE: correo para solicitudes de datos].
+Responsable: OUTTA CLOTHES S.A.S., NIT 901.787.107-5, Calle 38 # 29-29, Bogotá D.C. Correo para solicitudes de datos: clothesoutta@gmail.com.
 
 Datos que recogemos: nombre, correo, celular, documento (para la factura electrónica) y dirección de envío.
 Para qué: procesar y despachar tus pedidos, emitir factura, atender solicitudes y, solo si lo autorizas, enviarte lanzamientos.
 Pagos: los datos de tarjeta los procesa la pasarela; OUTTA no los ve ni los guarda.
 Medición publicitaria: si aceptas cookies de medición, compartimos con Meta eventos de navegación y compra; tu correo y teléfono se envían cifrados (hash). Nunca tu documento ni tu dirección.
-Tus derechos: conocer, actualizar, rectificar y suprimir tus datos, y revocar la autorización. Puedes hacerlo desde "Mi cuenta → Privacidad" o escribiendo a [PENDIENTE: correo].`};
+Tus derechos: conocer, actualizar, rectificar y suprimir tus datos, y revocar la autorización. Puedes hacerlo desde "Mi cuenta → Privacidad" o escribiendo a clothesoutta@gmail.com.`};
 
 /* ---------------- catálogo: cambios del panel sobre el JSON ---------------- */
 function overlay(data){
@@ -1848,7 +1848,7 @@ function renderPg(){
   else if(pgTab==='faq')M.innerHTML=`<h2 class="ttl">Preguntas frecuentes</h2>${FAQ().map((q,i)=>`<details class="faq"${i?'':' open'}><summary>${q[0]}</summary><p>${q[1].replace(/\[PENDIENTE[^\]]*\]/g,m=>'<mark>'+m+'</mark>')}</p></details>`).join('')}`;
   else if(pgTab==='contacto'){const u=me||{};M.innerHTML=`<h2 class="ttl">Contacto</h2><div class="pg-cols"><div>
     ${db.cfg.wa?`<a class="cta" style="text-decoration:none;margin-bottom:10px" target="_blank" rel="noopener" href="https://wa.me/${db.cfg.wa}?text=${encodeURIComponent('Hola OUTTA, tengo una pregunta')}"><span>Escribir por WhatsApp</span></a>`:'<p class="warn-box">El botón de WhatsApp aparece cuando registres el número en el panel (Envíos y contacto).</p>'}
-    <dl class="info"><dt>Instagram</dt><dd><a href="https://www.instagram.com/${esc(db.cfg.ig)}/" target="_blank" rel="noopener">@${esc(db.cfg.ig)}</a></dd><dt>Atención</dt><dd>${esc(TX.contacto||'')}</dd><dt>Empresa</dt><dd>OUTTA CLOTHES S.A.S. · NIT 901.787.107-5 · Bogotá D.C.</dd></dl></div>
+    <dl class="info"><dt>Instagram</dt><dd><a href="https://www.instagram.com/${esc(db.cfg.ig)}/" target="_blank" rel="noopener">@${esc(db.cfg.ig)}</a></dd><dt>Atención</dt><dd>${esc(TX.contacto||'')}</dd><dt>Empresa</dt><dd>OUTTA CLOTHES S.A.S. · NIT 901.787.107-5 · Calle 38 # 29-29, Bogotá D.C.</dd></dl></div>
     <form id="ct-f" novalidate><div class="grid2"><div class="fld"><label>Nombre</label><input id="ct-n" required value="${esc(u.nombre||'')}"></div><div class="fld"><label>Correo</label><input id="ct-m" type="email" required value="${esc(u.email||'')}"></div></div>
      <div class="grid2"><div class="fld"><label>Celular (opcional)</label><input id="ct-c" type="tel" value="${esc(u.cel||'')}"></div><div class="fld"><label>Tema</label><select id="ct-t"><option>Tallas y medidas</option><option>Mi pedido</option><option>Cambios y retracto</option><option>Colaboraciones y prensa</option><option>Otro</option></select></div></div>
      <div class="fld"><label>Número de pedido (si aplica)</label><input id="ct-o" placeholder="OUT-0000"></div><div class="fld"><label>Mensaje</label><textarea id="ct-x" required></textarea></div>

@@ -1,3 +1,4 @@
 # OUTTA' — outtaclothes.com
 
-Sitio estático (modo vitrina). Se publica con Cloudflare Pages: sin comando de build, directorio de salida `/`.
+Sitio estático en `public/`, publicado con Cloudflare Workers (Static Assets).
+Cada push a `main` se despliega solo (`npx wrangler deploy`, sin comando de build).

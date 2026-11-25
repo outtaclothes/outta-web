@@ -29,6 +29,7 @@ async function firma(req, env) {
   const { pedido_id } = await req.json().catch(() => ({}));
   if (!/^[0-9a-f-]{36}$/i.test(pedido_id || '')) return J({ error: 'Pedido no válido' }, 400);
   if (!env.BOLD_SECRET) return J({ error: 'La pasarela aún no está configurada (falta la llave secreta)' }, 503);
+  if (env.BOLD_MODE !== 'produccion' && !(await rpc(env, 'pedido_es_de_equipo', { p_id: pedido_id }, true))) return J({ error: 'La tienda está en modo pruebas: por ahora los pedidos se hacen por WhatsApp' }, 403);
   const p = await rpc(env, 'pedido_para_pago', { p_id: pedido_id });
   if (!p) return J({ error: 'Pedido no encontrado' }, 404);
   if (p.estado !== 'pendiente') return J({ error: 'Este pedido ya no está pendiente de pago' }, 409);
@@ -63,6 +64,9 @@ async function webhook(req, env, ctx) {
 async function confirmarPrueba(req, env) {
   if (env.BOLD_MODE !== 'pruebas') return J({ error: 'solo en pruebas' }, 403);
   const { pedido_id, status, tx } = await req.json().catch(() => ({}));
+  if (!/^[0-9a-f-]{36}$/i.test(pedido_id || '')) return J({ error: 'Pedido no válido' }, 400);
+  // En pruebas solo se confirman compras hechas por el equipo de OUTTA.
+  if (!(await rpc(env, 'pedido_es_de_equipo', { p_id: pedido_id }, true))) return J({ error: 'Las compras de prueba solo las puede hacer el equipo' }, 403);
   const p = await rpc(env, 'pedido_para_pago', { p_id: pedido_id });
   if (!p) return J({ error: 'no existe' }, 404);
   const r = await rpc(env, 'confirmar_pago', { p_numero: p.numero, p_tx: 'PRUEBA-' + (tx || pedido_id), p_aprobado: status === 'approved', p_metodo: 'prueba', p_monto: p.total, p_payload: { prueba: true, status } }, true);

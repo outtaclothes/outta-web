@@ -644,6 +644,10 @@ dialog[open]~.wa{display:none}
 .vitrina .mn-cols{grid-template-columns:repeat(4,1fr)}
 .igc{padding:4px 0}
 @media (max-width:900px){.vitrina .t3{left:138px}}
+
+.vitrina.live #open-acct{display:inline-flex!important}
+.vitrina.live [data-mn="acct"]{display:block!important}
+.staff [data-mn="admin"]{display:block!important}
 </style>
 <script>(function(){var q=location.search;try{if(/[?&]tienda=prueba/.test(q))localStorage.setItem('outta-tienda','1');if(/[?&]tienda=off/.test(q))localStorage.removeItem('outta-tienda')}catch(e){}
 var t=false;try{t=localStorage.getItem('outta-tienda')==='1'}catch(e){}window.VITRINA=!t;
@@ -1393,7 +1397,7 @@ const LS={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}
 const DBK='outta-db-v1';
 const BASE={users:[],orders:[],seq:0,prod:{},cfg:{envBog:12000,envNac:18000,gratis:400000,pixel:'',owner:null,tx:{},wa:'573105784965',ig:'outta.__',nx:null},log:[],events:[],mov:[],cupones:[],avisos:[],msgs:[],reviews:[],agenda:[],diario:[],cols:{}};
 let db=Object.assign(structuredClone(BASE),LS.get(DBK,{}));db.cfg=Object.assign(structuredClone(BASE.cfg),db.cfg||{});['cupones','avisos','msgs','reviews','agenda','diario'].forEach(k=>{if(!Array.isArray(db[k]))db[k]=[]});if(!db.cols||typeof db.cols!=='object')db.cols={};
-const saveDB=()=>LS.set(DBK,db);
+let saveDB=()=>LS.set(DBK,db);
 const now=()=>Date.now();
 const fd=t=>new Date(t).toLocaleDateString('es-CO',{day:'2-digit',month:'short',year:'numeric'});
 const fdt=t=>new Date(t).toLocaleString('es-CO',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
@@ -1784,7 +1788,7 @@ function aDatos(){
 function checklist(){
   const it=[[!/PENDIENTE/.test(TX.envios||'PENDIENTE'),'Texto de envíos, cambios y devoluciones','envios'],[!/PENDIENTE/.test(TX.contacto||'PENDIENTE'),'WhatsApp y correo de atención en el texto de contacto','envios'],[!!db.cfg.wa,'Número de WhatsApp para el botón flotante','envios'],
     [!!db.cfg.pixel,'Pixel ID de Meta','marketing'],[P.every(p=>p.m),`Tablas de medidas (sin tabla: ${P.filter(p=>!p.m).length})`,'productos'],[P.every(p=>p.mat),`Material y cuidado (sin dato: ${P.filter(p=>!p.mat).length})`,'productos'],
-    [false,'Correo y teléfono de atención en los textos legales (borradores)',''],[false,'Conectar Supabase, Bold y el dominio propio',''],[false,'Factura electrónica: confirmar con el contador',''],[!/PENDIENTE/.test(NX&&NX.frase||''),'Frase y fecha de la próxima colección','coleccion']];
+    [false,'Revisar textos legales (términos, cambios, privacidad)',''],[false,'Pagos reales: llaves de producción de Bold y webhook',''],[false,'Factura electrónica: confirmar con el contador',''],[!/PENDIENTE/.test(((db.cfg.nx||NX||{}).frase)||'PENDIENTE'),'Frase y fecha de la próxima colección','coleccion']];
   const done=it.filter(x=>x[0]).length;
   return `<div class="box"><h3>Para lanzar la tienda · ${done}/${it.length}</h3>${it.map(([ok,t,k])=>`<div style="display:flex;gap:10px;align-items:center;padding:6px 0;border-bottom:1px solid var(--linea);font-size:12.5px"><span style="width:18px;height:18px;border:1px solid ${ok?'var(--negro)':'#8A857C'};background:${ok?'var(--negro)':'#fff'};color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:11px">${ok?'✓':''}</span><span style="flex:1;${ok?'color:var(--gris);text-decoration:line-through':''}">${t}</span>${k&&!ok?`<button class="btn2 sm" data-ad="${k}">Resolver</button>`:''}</div>`).join('')}</div>`;
 }
@@ -1823,7 +1827,7 @@ let pgTab='historia';
 function openPg(k){pgTab=k||pgTab;renderPg();if(!$('#pg').open)$('#pg').showModal();$('#pg .sh-body').scrollTop=0;setTimeout(()=>{try{history.replaceState(null,'','#'+pgTab)}catch(e){}},0)}
 const VIT=!!window.VITRINA,IG=()=>'https://www.instagram.com/'+db.cfg.ig+'/';
 const igCta=()=>`<div class="igc"><p class="note" style="margin:0 0 10px">Los lanzamientos se anuncian primero en Instagram.</p><a class="btn2 dk" href="${IG()}" target="_blank" rel="noopener">Seguir a @${esc(db.cfg.ig)}</a></div>`;
-const listForm=(id,col)=>VIT?igCta():`<form class="lform" data-col="${esc(col)}" id="${id}" novalidate><div class="grid3" style="grid-template-columns:1fr auto;gap:0 8px;align-items:end"><div class="fld"><label for="${id}-m">Tu correo</label><input id="${id}-m" type="email" required autocomplete="email" placeholder="tu@correo.com"></div><div class="fld"><button class="btn2 dk" style="min-height:46px">Entrar a la lista</button></div></div><label class="chk2" style="margin-top:-4px"><input type="checkbox" required><span>Acepto recibir lanzamientos de OUTTA y el <button type="button" class="lnk" data-legal="privacidad">tratamiento de mis datos</button>.</span></label><p class="note lmsg"></p></form>`;
+const listForm=(id,col)=>VIT&&!(window.OUTTA_CFG&&window.supabase)?igCta():`<form class="lform" data-col="${esc(col)}" id="${id}" novalidate><div class="grid3" style="grid-template-columns:1fr auto;gap:0 8px;align-items:end"><div class="fld"><label for="${id}-m">Tu correo</label><input id="${id}-m" type="email" required autocomplete="email" placeholder="tu@correo.com"></div><div class="fld"><button class="btn2 dk" style="min-height:46px">Entrar a la lista</button></div></div><label class="chk2" style="margin-top:-4px"><input type="checkbox" required><span>Acepto recibir lanzamientos de OUTTA y el <button type="button" class="lnk" data-legal="privacidad">tratamiento de mis datos</button>.</span></label><p class="note lmsg"></p></form>`;
 function sizeGuide(){const rows=P.filter(p=>p.m&&p.st!=='oculta');const byCat={};rows.forEach(p=>(byCat[p.cat]=byCat[p.cat]||[]).push(p));
   return Object.entries(byCat).map(([c,ps])=>`<h3 class="pg-h3">${esc(c)}</h3>${ps.map(p=>`<div class="pg-sz"><button class="pg-pc" data-fav="${p.id}"><img src="img/${p.id}.webp" alt="">${esc(p.n)}</button><table class="med"><thead><tr><th></th>${p.m.h.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${p.m.r.map(r=>`<tr><td>${esc(r[0])}</td>${r.slice(1).map(x=>`<td>${esc(x)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`).join('')}`).join('')+
    (P.some(p=>!p.m)?`<p class="note">Piezas sin tabla publicada todavía: ${P.filter(p=>!p.m).map(p=>esc(p.n)).join(', ')}.</p>`:'');}
@@ -2050,6 +2054,7 @@ function wire(){
 function route(){const h=location.hash;if(h==='#admin')openAdm();else if(h==='#cuenta')openAcct();else if(['#historia','#tallas','#faq','#contacto','#rastreo','#colecciones','#taller','#agenda','#guardadas'].includes(h))openPg(h.slice(1));}
 
 /* ====================== MODO VITRINA (dominio público sin pagos) ====================== */
+let OPENCO_REAL=openCO,RENDERBAG_REAL=renderBag;const HASLIVE=!!(window.OUTTA_CFG&&window.supabase);
 if(VIT){
   document.body.classList.add('vitrina');
   if(window.VCFG){if(VCFG.wa)db.cfg.wa=VCFG.wa;if(VCFG.ig)db.cfg.ig=VCFG.ig}
@@ -2063,26 +2068,27 @@ if(VIT){
   const PMAP=[[/\[PENDIENTE: composición real y cuidado\]/g,'Escríbenos por mensaje directo y te contamos composición y cuidado.'],[/\[PENDIENTE: intervenciones de construcción de esta pieza\]/g,'Pregúntanos por mensaje directo cómo se construyó esta pieza.'],[/\[PENDIENTE: tabla de medidas de esta pieza\]/g,'Pídenos las medidas por mensaje directo.'],[/\[PENDIENTE[^\]]*\]/g,'']];
   const clean=root=>{if(!root)return;const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode())if(n.nodeValue.includes('[PENDIENTE'))PMAP.forEach(([r,t])=>{n.nodeValue=n.nodeValue.replace(r,t)})};
   const pn=document.querySelector('aside.panel');if(pn){let busy=false;new MutationObserver(()=>{if(busy)return;busy=true;clean(pn);busy=false}).observe(pn,{childList:true,subtree:true,characterData:true})}
-  const _en=enrichPV;enrichPV=function(p,l){_en(p,l);clean($('#pv-info'));clean($('#pv-buy'));$$('#pv-buy .notifyme').forEach(x=>x.remove());const f=$('#pv-buy .fine');if(f)f.textContent='Pedidos por mensaje directo · envío a todo Colombia.'};
+  const _en=enrichPV;enrichPV=function(p,l){_en(p,l);clean($('#pv-info'));clean($('#pv-buy'));if(!HASLIVE)$$('#pv-buy .notifyme').forEach(x=>x.remove());const f=$('#pv-buy .fine');if(f)f.textContent='Pedidos por mensaje directo · envío a todo Colombia.'};
   pvReviews=function(){};
-  const _lp2=lockedPanel;lockedPanel=function(){const r=_lp2.apply(this,arguments);const d=document.querySelector('#notify');if(d)d.outerHTML=igCta();const ds=document.querySelector('.lname+.desc');if(ds&&pend(ds.textContent))ds.remove();
-    const a=$('#add');$('#add-l').textContent='Seguir en Instagram';a.onclick=()=>window.open(IG(),'_blank','noopener');return r};
+  if(!HASLIVE){const _lp2=lockedPanel;lockedPanel=function(){const r=_lp2.apply(this,arguments);const d=document.querySelector('#notify');if(d)d.outerHTML=igCta();const ds=document.querySelector('.lname+.desc');if(ds&&pend(ds.textContent))ds.remove();
+    const a=$('#add');$('#add-l').textContent='Seguir en Instagram';a.onclick=()=>window.open(IG(),'_blank','noopener');return r}}else{const _lp3=lockedPanel;lockedPanel=function(){const r=_lp3.apply(this,arguments);const ds=document.querySelector('.lname+.desc');if(ds&&pend(ds.textContent))ds.remove();const ch=document.querySelector('#notify .chk');if(ch)ch.lastChild.nodeValue=' Acepto que OUTTA use mi correo para avisarme de este lanzamiento.';return r}};
   const _fq=FAQ;FAQ=()=>[['¿Cómo compro?',`Elige tu pieza y talla, añádela a la bolsa y toca "${db.cfg.wa?'Pedir por WhatsApp':'Pedir por Instagram'}". Te confirmamos disponibilidad, envío a tu ciudad y forma de pago por mensaje directo.`],..._fq().filter(q=>/talla|cambiar|agotada/i.test(q[0])&&!/agotada/i.test(q[0])).map(q=>/cambiar/i.test(q[0])?[q[0],'Sí. Tienes derecho de retracto dentro de los 5 días hábiles siguientes a la entrega. Escríbenos por mensaje directo con tu pedido.']:q),['¿Hacen envíos a todo el país?','Sí. Te confirmamos el costo y el tiempo de envío según tu ciudad al hacer el pedido.']];
   const _rp=renderPg;renderPg=function(){if(['rastreo','agenda','taller'].includes(pgTab))pgTab='historia';_rp();$$('#pg-nav [data-pg="rastreo"],#pg-nav [data-pg="agenda"],#pg-nav [data-pg="taller"]').forEach(b=>b.remove());
-    if(pgTab==='contacto'){const f=$('#ct-f');if(f)f.remove();$$('#pg-main .warn-box').forEach(x=>x.remove());const dd=[...$$('#pg-main dl.info dt')].find(x=>x.textContent==='Atención');if(dd&&pend(dd.nextElementSibling.textContent)){dd.nextElementSibling.remove();dd.remove()}
+    if(pgTab==='contacto'){const f=$('#ct-f');if(f&&!HASLIVE)f.remove();$$('#pg-main .warn-box').forEach(x=>x.remove());const dd=[...$$('#pg-main dl.info dt')].find(x=>x.textContent==='Atención');if(dd&&pend(dd.nextElementSibling.textContent)){dd.nextElementSibling.remove();dd.remove()}
       if(!db.cfg.wa)$('#pg-main .pg-cols>div').insertAdjacentHTML('afterbegin',`<a class="cta" style="text-decoration:none;margin-bottom:14px" target="_blank" rel="noopener" href="https://ig.me/m/${esc(db.cfg.ig)}"><span>Escribir por Instagram</span></a>`)}};
-  openAcct=function(){};openAdm=function(){};
+  if(!HASLIVE){openAcct=function(){};openAdm=function(){}}
   const _wait=setInterval(()=>{if(typeof ready!=='undefined'&&ready){clearInterval(_wait);
     if(pend(TX.credito))$('#tx-credito').textContent='';if(pend(TX.envios))TX.envios='Envío a todo Colombia: te confirmamos costo y tiempo según tu ciudad al hacer el pedido. Retracto: 5 días hábiles desde la entrega.';if(pend(TX.contacto))TX.contacto='Instagram @'+db.cfg.ig;$('#proto').hidden=true;
     if(NX&&pend(NX.frase))NX.frase='';build();count()}},200);
-  const ml=$('#menu .mn-list');if(ml){ml.querySelector('.lab2').textContent='Primero en Instagram';ml.querySelector('.mn-ln')?.remove();ml.querySelector('.lform')?.remove();ml.querySelector('.mn-igc').innerHTML=igCta()}
+  const ml=$('#menu .mn-list');if(ml&&!HASLIVE){ml.querySelector('.lab2').textContent='Primero en Instagram';ml.querySelector('.mn-ln')?.remove();ml.querySelector('.lform')?.remove();ml.querySelector('.mn-igc').innerHTML=igCta()}
 }
 
 /* ====================== CONEXIÓN REAL: Supabase + Bold ====================== */
 const CFG=window.OUTTA_CFG||null;
 const SB=(CFG&&window.supabase)?window.supabase.createClient(CFG.sbUrl,CFG.sbKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}}):null;
 const LIVE=!!SB;
-const TIENDA=LIVE&&!VIT;
+const TIENDA=LIVE;
+if(LIVE)document.body.classList.add('live');
 const ERRMSG=e=>{const m=(e&&(e.message||e.error_description||e.msg))||String(e||'');return m.replace(/^.*?:\s*(?=[A-ZÁÉÍÓÚ])/,'')||'Algo falló. Intenta de nuevo.'};
 
 /* Catálogo en vivo: precios, stock, estado, textos y colecciones vienen de la base de datos */
@@ -2137,10 +2143,10 @@ if(TIENDA){
       doc:r.num_doc?{tipo:r.tipo_doc||'CC',num:r.num_doc}:null,datosT:r.acepta_datos?Date.parse(r.acepta_datos):Date.now(),datosV:r.version_politica||'v1',
       dirs:(d.data||[]).map(x=>({rid:x.id,dep:x.departamento,ciudad:x.ciudad,dir:x.direccion,barrio:x.barrio||'',ind:x.indicaciones||''}))};
     const eq=await SB.from('equipo').select('rol').eq('user_id',user.id).maybeSingle();me.rol=eq.data?.rol||null;
-    paintAcct()};
+    document.body.classList.toggle('staff',!!me.rol);paintAcct()};
   loadMe=function(){};
   SB.auth.getSession().then(({data})=>mapMe(data.session?.user));
-  SB.auth.onAuthStateChange((ev,s)=>{if(ev==='SIGNED_OUT'){me=null;paintAcct()}else if(s&&(ev==='SIGNED_IN'||ev==='USER_UPDATED'))mapMe(s.user)});
+  SB.auth.onAuthStateChange((ev,s)=>{if(ev==='SIGNED_OUT'){me=null;document.body.classList.remove('staff');paintAcct()}else if(s&&(ev==='SIGNED_IN'||ev==='USER_UPDATED'))mapMe(s.user)});
 
   window.__liveWire=()=>{
   $('#f-in').onsubmit=async e=>{e.preventDefault();const m=$('#in-mail').value.trim().toLowerCase(),msg=$('#in-msg');msg.textContent='Ingresando…';
@@ -2228,6 +2234,10 @@ if(TIENDA){
       ck.open();m.textContent='Completa el pago en la ventana de Bold. Tus piezas quedan reservadas 30 minutos.';
     }catch(e){m.textContent=ERRMSG(e);}finally{btn.disabled=false}
   };
+  const OPENCO_PUB=openCO,RENDERBAG_PUB=renderBag;
+  const realCO=()=>!VIT||(CFG.modo==='pruebas'?!!(me&&me.rol):true);
+  openCO=function(){return realCO()?OPENCO_REAL():OPENCO_PUB()};
+  renderBag=function(){return realCO()?RENDERBAG_REAL():RENDERBAG_PUB()};
   /* regreso desde Bold */
   const pend=LS.get('outta-pago',null),qs=new URLSearchParams(location.search);
   const back=qs.get('pago')||(qs.get('bold-order-id')&&pend&&pend.id);
@@ -2247,8 +2257,115 @@ if(TIENDA){
     const w=setInterval(()=>{if(typeof ready!=='undefined'&&ready){clearInterval(w);finish()}},200);
   }
 
-  /* -------- el panel local de prueba no se usa con datos reales todavía -------- */
-  openAdm=function(){if(!me||!me.rol){toast('El panel conectado se habilita para tu cuenta de dueño en la siguiente actualización');return}toast('Panel conectado: en la siguiente actualización')};
+
+  /* ====================== PANEL DE DUEÑO CONECTADO ======================
+     El panel usa las mismas pantallas; los datos se cargan de Supabase y
+     cada cambio se compara con lo cargado y se guarda en la base de datos. */
+  let ADM=false,SNAP={},syncing=Promise.resolve();
+  const J_=o=>JSON.stringify(o);
+  const keyBy=(a,f)=>Object.fromEntries(a.map(x=>[f(x),J_(x)]));
+  const snapAll=()=>{SNAP={orders:keyBy(db.orders,o=>o.id),cupones:keyBy(db.cupones,c=>c.code),avisos:keyBy(db.avisos,a=>a.rid),msgs:keyBy(db.msgs,m=>m.rid),reviews:keyBy(db.reviews,r=>r.id),
+    agenda:keyBy(db.agenda,a=>a.id),diario:keyBy(db.diario,d=>d.id),cols:J_(db.cols),log:db.log.length?db.log[0].t:0,
+    cfg:J_({b:db.cfg.envBog,n:db.cfg.envNac,g:db.cfg.gratis,wa:db.cfg.wa,ig:db.cfg.ig,tx:db.cfg.tx,nx:db.cfg.nx}),
+    prod:keyBy(P.map(p=>({id:p.id,p:p.p,c:p.c||null,d:p.d||'',st:p.st==='oculta'?'oculto':'activo'})),x=>x.id),
+    stock:Object.fromEntries(P.flatMap(p=>p.v.map(v=>[p.id+'|'+v.t,v.q])))}};
+  async function loadAdmin(){
+    const q=(t,sel='*',o)=>{let r=SB.from(t).select(sel);if(o)r=r.order(o,{ascending:false});return r.limit(1000)};
+    const [ped,cl,cu,av,li,ms,rv,ag,ta,bi,mo,cf,co,pr,va]=await Promise.all([q('pedidos','*,pedido_lineas(*),pagos(metodo,transaccion_id,estado)','creado'),q('clientes','*','creado'),q('cupones','*','creado'),q('avisos','*','creado'),q('lista_acceso','*','creado'),
+      q('mensajes','*','creado'),q('resenas','*','creado'),q('agenda'),q('taller','*','creado'),q('bitacora','*','creado'),q('movimientos_stock','*','creado'),q('config'),q('colecciones'),
+      SB.from('productos').select('id,precio,precio_antes,descripcion,estado'),SB.from('variantes').select('producto_id,talla,stock')]);
+    if(ped.error)throw ped.error;
+    db.orders=(ped.data||[]).map(r=>{const o=mapO(r);const pg=(r.pagos||[])[0];o.pago=pg?{proveedor:'Bold',metodo:pg.metodo||'',tx:pg.transaccion_id||'',estado:pg.estado||''}:null;o.nota=r.nota_interna||'';o.recup=r.recuperacion?{...r.recuperacion,t:Date.parse(r.recuperacion.t)}:null;return o});
+    db.users=(cl.data||[]).map(c=>({id:c.id,t:Date.parse(c.creado),nombre:c.nombre||'',apellido:c.apellido||'',email:c.email||'',cel:c.celular||'',mkt:!!c.acepta_mkt}));
+    db.cupones=(cu.data||[]).map(c=>({code:c.codigo,tipo:c.tipo,v:c.valor,min:c.minimo,vence:c.vence||'',max:c.max_usos||0,usos:c.usos,activo:c.activo,t:Date.parse(c.creado)}));
+    db.avisos=(av.data||[]).map(a=>({rid:a.id,id:a.producto_id,t:a.talla,mail:a.email,f:Date.parse(a.creado),ok:a.avisado?Date.parse(a.avisado):0}));
+    LISTA=(li.data||[]).map(l=>({mail:l.email,col:l.coleccion,t:Date.parse(l.creado)})).reverse();
+    db.msgs=(ms.data||[]).map(m=>({rid:m.id,t:Date.parse(m.creado),nombre:m.nombre,mail:m.email,cel:m.celular||'',tema:m.tema||'',pedido:m.pedido||'',txt:m.texto,leido:m.leido}));
+    db.reviews=(rv.data||[]).map(r=>({id:String(r.id),oid:r.pedido_id,pid:r.producto_id,talla:r.talla,nombre:r.nombre,stars:r.estrellas,fit:r.ajuste||'justa',txt:r.texto,t:Date.parse(r.creado),ok:r.estado==='publicada'?true:r.estado==='rechazada'?false:null,uid:r.cliente_id}));
+    db.agenda=(ag.data||[]).map(a=>({id:String(a.id),titulo:a.titulo,tipo:a.tipo||'',fecha:a.fecha,hora:a.hora||'',lugar:a.lugar||'',link:a.enlace||'',desc:a.descripcion||'',pub:a.publicada}));
+    db.diario=(ta.data||[]).map(d=>({id:String(d.id),t:Date.parse(d.creado),titulo:d.titulo,txt:d.texto,pid:d.producto_id||'',img:d.imagen||'',pub:d.publicada}));
+    db.log=(bi.data||[]).map(b=>({t:Date.parse(b.creado),txt:b.texto}));
+    db.mov=(mo.data||[]).map(m=>({t:Date.parse(m.creado),id:m.producto_id,talla:m.talla,d:m.cambio,q:m.queda,motivo:m.motivo||'',ref:m.referencia||''}));
+    const C=Object.fromEntries((cf.data||[]).map(x=>[x.clave,x.valor]));
+    if(C.envios){db.cfg.envBog=+C.envios.bogota||0;db.cfg.envNac=+C.envios.nacional||0;db.cfg.gratis=+C.envios.gratis||0}
+    if(C.contacto){db.cfg.wa=C.contacto.whatsapp||'';db.cfg.ig=C.contacto.instagram||'outta.__'}
+    db.cfg.tx=C.textos||{};db.cfg.nx=C.proxima||null;
+    db.cols={};(co.data||[]).forEach(c=>{db.cols[c.nombre]={frase:c.frase||'',estado:c.estado}});
+    const PM=Object.fromEntries((pr.data||[]).map(x=>[x.id,x]));
+    P.forEach(p=>{const r=PM[p.id];if(r){p.p=r.precio;p.c=r.precio_antes||null;p.d=r.descripcion;p.st=r.estado==='oculto'?'oculta':undefined}
+      p.v.forEach(v=>{const x=(va.data||[]).find(y=>y.producto_id===p.id&&y.talla===v.t);if(x)v.q=x.stock})});
+    db.events=LS.get(DBK,{}).events||db.events||[];
+    snapAll();
+  }
+  let LISTA=[];
+  const _LSget=LS.get;LS.get=function(k,d){if(ADM&&k==='outta-lista')return LISTA;return _LSget(k,d)};
+
+  async function syncAll(){
+    const ops=[],err=e=>{if(e&&e.error)throw e.error;return e};
+    // pedidos
+    db.orders.forEach(o=>{const was=SNAP.orders[o.id];if(!was||was===J_(o))return;const w=JSON.parse(was),up={};
+      if(o.estado!==w.estado){up.estado=o.estado}
+      if(J_(o.hist)!==J_(w.hist))up.historial=o.hist.map(h=>({e:h.e,t:new Date(h.t).toISOString(),...(h.nota?{nota:h.nota}:{})}));
+      if(o.guia!==w.guia)up.guia=o.guia;if(o.transp!==w.transp)up.transportadora=o.transp;if(o.nota!==w.nota)up.nota_interna=o.nota;
+      if(J_(o.recup)!==J_(w.recup))up.recuperacion=o.recup?{...o.recup,t:new Date(o.recup.t).toISOString()}:null;
+      if(J_(o.solicitud)!==J_(w.solicitud))up.solicitud=o.solicitud?{...o.solicitud,t:new Date(o.solicitud.t).toISOString()}:null;
+      if(Object.keys(up).length){up.actualizado=new Date().toISOString();ops.push(SB.from('pedidos').update(up).eq('id',o.id).then(err))}});
+    // stock (con motivo del último movimiento local)
+    P.forEach(p=>p.v.forEach(v=>{const k=p.id+'|'+v.t;if(SNAP.stock[k]!==undefined&&SNAP.stock[k]!==v.q){const mv=db.mov.find(m=>m.id===p.id&&m.talla===v.t);
+      ops.push(SB.rpc('ajustar_stock',{p_producto:p.id,p_talla:v.t,p_stock:v.q,p_motivo:(mv&&mv.motivo)||'ajuste'+(mv&&mv.ref?' '+mv.ref:'')}).then(err))}}));
+    // productos
+    P.forEach(p=>{const w=SNAP.prod[p.id];if(!w)return;const now_={id:p.id,p:p.p,c:p.c||null,d:p.d||'',st:p.st==='oculta'?'oculto':'activo'};if(J_(now_)===w)return;
+      ops.push(SB.from('productos').update({precio:now_.p,precio_antes:now_.c,descripcion:now_.d,estado:now_.st,actualizado:new Date().toISOString()}).eq('id',p.id).then(err))});
+    // cupones
+    db.cupones.forEach(c=>{const w=SNAP.cupones[c.code];if(w===J_(c))return;const row={codigo:c.code,tipo:c.tipo,valor:c.v,minimo:c.min||0,vence:c.vence||null,max_usos:c.max||null,activo:c.activo};
+      ops.push((w?SB.from('cupones').update(row).eq('codigo',c.code):SB.from('cupones').insert(row)).then(err))});
+    // avisos, mensajes, reseñas
+    db.avisos.forEach(a=>{const w=SNAP.avisos[a.rid];if(a.rid&&w&&w!==J_(a)&&a.ok)ops.push(SB.from('avisos').update({avisado:new Date(a.ok).toISOString()}).eq('id',a.rid).then(err))});
+    db.msgs.forEach(m=>{const w=SNAP.msgs[m.rid];if(m.rid&&w&&w!==J_(m))ops.push(SB.from('mensajes').update({leido:!!m.leido}).eq('id',m.rid).then(err))});
+    db.reviews.forEach(r=>{const w=SNAP.reviews[r.id];if(w&&w!==J_(r))ops.push(SB.from('resenas').update({estado:r.ok===true?'publicada':r.ok===false?'rechazada':'pendiente'}).eq('id',+r.id).then(err))});
+    // agenda y taller (alta, cambio, baja)
+    const crud=(arr,snap,table,row)=>{const ids=new Set(arr.map(x=>x.id));
+      arr.forEach(x=>{const w=snap[x.id];if(w===J_(x))return;if(!w||!/^\d+$/.test(x.id))ops.push(SB.from(table).insert(row(x)).then(err));else ops.push(SB.from(table).update(row(x)).eq('id',+x.id).then(err))});
+      Object.keys(snap).forEach(id=>{if(!ids.has(id)&&/^\d+$/.test(id))ops.push(SB.from(table).delete().eq('id',+id).then(err))})};
+    crud(db.agenda,SNAP.agenda,'agenda',a=>({titulo:a.titulo,tipo:a.tipo,fecha:a.fecha,hora:a.hora||null,lugar:a.lugar||null,enlace:a.link||null,descripcion:a.desc||null,publicada:!!a.pub}));
+    crud(db.diario,SNAP.diario,'taller',d=>({titulo:d.titulo,texto:d.txt,producto_id:d.pid||null,imagen:d.img||null,publicada:!!d.pub}));
+    // colecciones
+    if(J_(db.cols)!==SNAP.cols)Object.entries(db.cols).forEach(([n,k])=>ops.push(SB.from('colecciones').update({frase:k.frase||null,estado:k.estado||'actual'}).eq('nombre',n).then(err)));
+    // configuración
+    const cfgNow=J_({b:db.cfg.envBog,n:db.cfg.envNac,g:db.cfg.gratis,wa:db.cfg.wa,ig:db.cfg.ig,tx:db.cfg.tx,nx:db.cfg.nx});
+    if(cfgNow!==SNAP.cfg){const rows=[{clave:'envios',valor:{bogota:db.cfg.envBog,nacional:db.cfg.envNac,gratis:db.cfg.gratis},publico:true},{clave:'contacto',valor:{whatsapp:db.cfg.wa,correo:'clothesoutta@gmail.com',instagram:db.cfg.ig,direccion:'Calle 38 # 29-29, Bogotá D.C.'},publico:true},{clave:'textos',valor:db.cfg.tx||{},publico:true}];
+      if(db.cfg.nx)rows.push({clave:'proxima',valor:Object.assign({},NX||{},db.cfg.nx),publico:true});ops.push(SB.from('config').upsert(rows).then(err))}
+    // bitácora: entradas nuevas
+    const nuevos=db.log.filter(l=>l.t>SNAP.log);if(nuevos.length)ops.push(SB.from('bitacora').insert(nuevos.reverse().map(l=>({texto:l.txt,usuario:me.id}))).then(err));
+    if(!ops.length)return;
+    const res=await Promise.allSettled(ops);const bad=res.filter(r=>r.status==='rejected');
+    if(bad.length){console.error(bad);toast('No se pudo guardar un cambio: '+ERRMSG(bad[0].reason));await loadAdmin();renderAdm()}
+    else if(db.agenda.some(x=>!/^\d+$/.test(x.id))||db.diario.some(x=>!/^\d+$/.test(x.id))){await loadAdmin();renderAdm()}else snapAll();
+  }
+  const _save=saveDB;
+  saveDB=function(){if(!ADM)return _save();syncing=syncing.then(syncAll).catch(e=>{console.error(e);toast(ERRMSG(e))})};
+  // los módulos que leen localStorage directamente
+  const _rAdm=renderAdm;
+  renderAdm=function(){
+    if(!me||!me.rol){$('#adm-in').innerHTML=`<div class="sh-top"><img src="img/wordmark-negro.webp" alt="OUTTA'"><span class="crumb">Panel de dueño</span><button class="tag" style="position:static" data-close>cerrar ×</button></div>
+      <div class="sh-body"><div class="adlogin"><h2 class="ttl">Panel de dueño</h2><p class="note">Ingresa con la cuenta de dueño de OUTTA para ver pedidos, inventario y clientes reales.</p><button class="cta" id="adm-in-btn"><span>${me?'Esta cuenta no tiene acceso de dueño':'Ingresar'}</span></button></div></div>`;
+      const b=$('#adm-in-btn');if(b&&!me)b.onclick=()=>{$('#adm').close();openAuth('in',()=>openAdm())};return}
+    adOK=true;_rAdm();
+    const out=$('#ad-out');if(out)out.onclick=async()=>{await SB.auth.signOut();ADM=false;$('#adm').close();toast('Sesión cerrada')};
+    const nav=$('.ad-nav .lab2');if(nav)nav.textContent=`Panel de dueño · ${CFG.modo==='pruebas'?'pagos en pruebas':'en vivo'}`;
+    if(adTab==='marketing'){const n=$('#ad-m .box .note');if(n)n.insertAdjacentHTML('afterend','<p class="warn-box">Los eventos de esta tabla son los de este navegador. El envío por servidor (API de conversiones) se activa con el Pixel ID y el token de Meta.</p>')}
+    if(adTab==='datos'){const b=$('#dx-rs');if(b){b.closest('.box').remove()}}
+  };
+  openAdm=async function(){
+    if(!me||!me.rol){renderAdm();if(!$('#adm').open)$('#adm').showModal();return}
+    if(!$('#adm').open){$('#adm-in').innerHTML='<div class="sh-body"><div class="adlogin"><p class="note">Cargando datos reales…</p></div></div>';$('#adm').showModal()}
+    try{await syncing;await loadAdmin();ADM=true;renderAdm()}catch(e){console.error(e);$('#adm-in').innerHTML=`<div class="sh-body"><div class="adlogin"><h2 class="ttl">No se pudo cargar</h2><p class="note">${esc(ERRMSG(e))}</p><button class="sec" data-close>Cerrar</button></div></div>`}
+  };
+  $('#adm').addEventListener('close',async()=>{if(!ADM)return;await syncing;ADM=false;
+    // volver a cargar el catálogo público con los cambios
+    const d=await fetch('data/catalogo.json',{cache:'no-cache'}).then(r=>r.json()).then(window.STORE_REMOTE).catch(()=>null);
+    if(d){P.splice(0,P.length,...d.piezas);build();count()}});
+
   document.body.classList.add('tienda-live');
 }
 

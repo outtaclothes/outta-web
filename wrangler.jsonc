@@ -12,7 +12,8 @@
   "vars": {
     "SUPABASE_URL": "https://mhhesynflmqyeqsbttcc.supabase.co",
     "SUPABASE_ANON": "sb_publishable_-kpizVUgfvTkl_o4BQTEPw_ds89gptn",
-    "BOLD_ID": "a6KUVN0UjLmwui4Ik9Rq81IsTdtl8-6n7gikW6RuHtA",
+    // BOLD_ID de producción (para cuando salga de pruebas): a6KUVN0UjLmwui4Ik9Rq81IsTdtl8-6n7gikW6RuHtA
+    "BOLD_ID": "FJn5tFVaHM7kK-txG6g0SzNlZtGj5ljqxGtWeE6VekQ",
     "BOLD_MODE": "pruebas"
   }
 }

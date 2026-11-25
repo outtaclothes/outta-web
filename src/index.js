@@ -40,7 +40,7 @@ async function firma(req, env) {
   return J({
     orderId: p.numero, amount, currency: 'COP', apiKey: env.BOLD_ID,
     integritySignature: await sha256(`${p.numero}${amount}COP${env.BOLD_SECRET}`),
-    redirectionUrl: `${origin}/?tienda=prueba&pago=${pedido_id}`
+    redirectionUrl: `${origin}/?pago=${pedido_id}`
   });
 }
 

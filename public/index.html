@@ -652,7 +652,7 @@ dialog[open]~.wa{display:none}
 <script>(function(){var q=location.search;try{if(/[?&]tienda=prueba/.test(q))localStorage.setItem('outta-tienda','1');if(/[?&]tienda=off/.test(q))localStorage.removeItem('outta-tienda')}catch(e){}
 var t=false;try{t=localStorage.getItem('outta-tienda')==='1'}catch(e){}window.VITRINA=!t;
 window.VCFG={ig:"outta.__",wa:"573105784965"};
-window.OUTTA_CFG={sbUrl:"https://mhhesynflmqyeqsbttcc.supabase.co",sbKey:"sb_publishable_-kpizVUgfvTkl_o4BQTEPw_ds89gptn",modo:"pruebas"};})();</script>
+window.OUTTA_CFG={sbUrl:"https://mhhesynflmqyeqsbttcc.supabase.co",sbKey:"sb_publishable_-kpizVUgfvTkl_o4BQTEPw_ds89gptn",modo:"produccion"};})();</script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 </head>
 <body>
@@ -737,7 +737,7 @@ window.OUTTA_CFG={sbUrl:"https://mhhesynflmqyeqsbttcc.supabase.co",sbKey:"sb_pub
   <div class="dh"><h2>Envíos y contacto</h2><button class="x" data-close aria-label="Cerrar">×</button></div>
   <dl class="info">
     <dt>Instagram</dt><dd><a href="https://www.instagram.com/outta.__/" target="_blank" rel="noopener">@outta.__</a></dd>
-    <dt>Tienda actual</dt><dd><a href="https://outtaclothingdesigner.com" target="_blank" rel="noopener">outtaclothingdesigner.com</a></dd>
+    <dt>Tienda</dt><dd><a href="https://outtaclothes.com">outtaclothes.com</a></dd>
     <dt>Envíos, cambios y devoluciones</dt><dd id="tx-envios"></dd>
     <dt>WhatsApp y correo</dt><dd id="tx-contacto"></dd>
     <dt>Legal</dt><dd><button class="lnk" data-legal="terminos">Términos</button> · <button class="lnk" data-legal="cambios">Cambios y retracto</button> · <button class="lnk" data-legal="privacidad">Privacidad</button></dd>
@@ -1395,7 +1395,7 @@ fetch('data/catalogo.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw 0;return 
 (()=>{
 const LS={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const DBK='outta-db-v1';
-const BASE={users:[],orders:[],seq:0,prod:{},cfg:{envBog:12000,envNac:18000,gratis:400000,pixel:'',owner:null,tx:{},wa:'573105784965',ig:'outta.__',nx:null},log:[],events:[],mov:[],cupones:[],avisos:[],msgs:[],reviews:[],agenda:[],diario:[],cols:{}};
+const BASE={users:[],orders:[],seq:0,prod:{},cfg:{envBog:12000,envNac:18000,gratis:200000,pixel:'',owner:null,tx:{},wa:'573105784965',ig:'outta.__',nx:null},log:[],events:[],mov:[],cupones:[],avisos:[],msgs:[],reviews:[],agenda:[],diario:[],cols:{}};
 let db=Object.assign(structuredClone(BASE),LS.get(DBK,{}));db.cfg=Object.assign(structuredClone(BASE.cfg),db.cfg||{});['cupones','avisos','msgs','reviews','agenda','diario'].forEach(k=>{if(!Array.isArray(db[k]))db[k]=[]});if(!db.cols||typeof db.cols!=='object')db.cols={};
 let saveDB=()=>LS.set(DBK,db);
 const now=()=>Date.now();
@@ -2180,10 +2180,10 @@ if(TIENDA){
     if(error){msg.textContent=/confirm/i.test(error.message)?'Confirma tu correo: te enviamos un enlace al registrarte.':'Correo o contraseña incorrectos.';return}
     msg.textContent='';await mapMe(data.user);login(me)};
   $('#forgot').onclick=async()=>{const m=$('#in-mail').value.trim(),msg=$('#in-msg');if(!m){msg.textContent='Escribe tu correo arriba y vuelve a tocar el enlace.';return}
-    await SB.auth.resetPasswordForEmail(m,{redirectTo:location.origin+'/?tienda=prueba#cuenta'});msg.textContent=`Si ${m} tiene cuenta, le llegará un enlace para crear una nueva contraseña.`};
+    await SB.auth.resetPasswordForEmail(m,{redirectTo:location.origin+'/#cuenta'});msg.textContent=`Si ${m} tiene cuenta, le llegará un enlace para crear una nueva contraseña.`};
   $('#f-up').onsubmit=async e=>{e.preventDefault();const F=e.target,msg=$('#up-msg');if(!F.checkValidity()){F.reportValidity();return}
     msg.textContent='Creando tu cuenta…';
-    const {data,error}=await SB.auth.signUp({email:$('#up-mail').value.trim().toLowerCase(),password:$('#up-pw').value,options:{emailRedirectTo:location.origin+'/?tienda=prueba#cuenta',
+    const {data,error}=await SB.auth.signUp({email:$('#up-mail').value.trim().toLowerCase(),password:$('#up-pw').value,options:{emailRedirectTo:location.origin+'/#cuenta',
       data:{nombre:$('#up-n').value.trim(),apellido:$('#up-a').value.trim(),celular:$('#up-cel').value.trim(),acepta_datos:true,acepta_mkt:$('#up-mkt').checked,version_politica:'v1-2026-11'}}});
     if(error){msg.textContent=/registered|exists/i.test(error.message)?'Ya existe una cuenta con ese correo. Ingresa.':ERRMSG(error);return}
     track('CompleteRegistration',{status:true});
@@ -2272,7 +2272,7 @@ if(TIENDA){
     const finish=async()=>{
       try{if(st&&CFG.modo==='pruebas')await fetch('/api/pago/confirmar-prueba',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({pedido_id:back,status:st,tx:qs.get('bold-order-id')||''})})}catch(e){}
       let o=null;for(let i=0;i<10;i++){const {data}=await SB.rpc('pedido_para_pago',{p_id:back});o=data;if(o&&o.estado!=='pendiente')break;await new Promise(r=>setTimeout(r,2500))}
-      try{history.replaceState(null,'',location.pathname+'?tienda=prueba')}catch(e){}
+      try{history.replaceState(null,'',location.pathname)}catch(e){}
       if(!o)return;
       const ord={n:o.numero,tot:o.total,estado:o.estado==='pagado'?'pagado':o.estado,email:pend&&pend.email||'',lines:bag.map(x=>{const p=byId(x.id);return{id:x.id,n:p.n,t:x.t,q:x.q,p:p.p}}),pago:{metodo:'Bold'},nombre:'',apellido:'',cel:'',mkt:false};
       if(o.estado==='pagado'){track('Purchase',{value:o.total,currency:'COP',content_ids:ord.lines.map(l=>l.id),num_items:ord.lines.reduce((a,l)=>a+l.q,0),order_id:o.numero,_pid:back},o.numero);bag=[];save();count();cupLive=null;cupon=null;LS.set('outta-pago',null);

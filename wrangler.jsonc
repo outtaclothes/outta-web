@@ -1,8 +1,18 @@
 {
-  // OUTTA' — sitio estático servido con Workers Static Assets
+  // OUTTA' — página en public/ + API de pagos en src/index.js
   "name": "outta-web",
+  "main": "src/index.js",
   "compatibility_date": "2025-09-01",
   "assets": {
-    "directory": "./public"
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  "observability": { "enabled": true },
+  "vars": {
+    "SUPABASE_URL": "https://mhhesynflmqyeqsbttcc.supabase.co",
+    "SUPABASE_ANON": "sb_publishable_-kpizVUgfvTkl_o4BQTEPw_ds89gptn",
+    "BOLD_ID": "a6KUVN0UjLmwui4Ik9Rq81IsTdtl8-6n7gikW6RuHtA",
+    "BOLD_MODE": "pruebas"
   }
 }

@@ -1607,7 +1607,7 @@ function bizDays(t,n){const d=new Date(t);let k=0;while(k<n){d.setDate(d.getDate
 function openAcct(tab){if(!me)return openAuth('in',()=>openAcct(tab));expire();acTab=tab||acTab;renderAcct();if(!$('#acct').open)$('#acct').showModal()}
 function renderAcct(){
   const T=[['pedidos','Pedidos'],['datos','Mis datos'],['dirs','Direcciones'],['guardadas','Guardadas'],['priv','Privacidad']];
-  $('#ac-nav').innerHTML=`<div class="who"><b>${esc(me.nombre)} ${esc(me.apellido)}</b>${esc(me.email)}</div>`+T.map(([k,l])=>`<button data-ac="${k}" aria-current="${k===acTab}">${l}</button>`).join('')+'<button data-ac="salir">Cerrar sesión</button>';
+  $('#ac-nav').innerHTML=`<div class="who"><b>${esc(me.nombre)} ${esc(me.apellido)}</b>${esc(me.email)}</div>`+T.map(([k,l])=>`<button data-ac="${k}" aria-current="${k===acTab}">${l}</button>`).join('')+(me.rol?`<button data-ac="panel" style="font-weight:700">${me.rol==='dueno'?'Panel de dueño':'Panel de equipo'} →</button>`:'')+'<button data-ac="salir">Cerrar sesión</button>';
   const M=$('#ac-main');
   if(acTab==='pedidos'){const os=myOrders().filter(o=>o.estado!=='expirado');
     M.innerHTML=`<h2 class="ttl">Tus pedidos</h2>`+(os.length?os.map(o=>{const steps=['pagado','preparando','enviado','entregado'],k=steps.indexOf(o.estado),ent=(o.hist.find(h=>h.e==='entregado')||{}).t,lim=ent&&bizDays(ent,5),can=o.estado==='entregado'&&now()<lim&&!o.solicitud;
@@ -2014,7 +2014,7 @@ document.addEventListener('click',e=>{
   else if(t.dataset.ck){LS.set('outta-cookies',t.dataset.ck);ck();toast(t.dataset.ck==='all'?'Cookies de medición activadas':'Solo cookies necesarias')}
   else if(t.dataset.at)authTab(t.dataset.at);
   else if(t.hasAttribute('data-google'))$('#in-msg').textContent='El ingreso con Google se activa al conectar Supabase Auth. Por ahora usa tu correo.';
-  else if(t.dataset.ac){if(t.dataset.ac==='salir'){LS.set('outta-sesion',null);me=null;paintAcct();$('#acct').close();toast('Sesión cerrada');return}acTab=t.dataset.ac;renderAcct()}
+  else if(t.dataset.ac){if(t.dataset.ac==='panel'){$('#acct').close();openAdm();return}if(t.dataset.ac==='salir'){LS.set('outta-sesion',null);me=null;paintAcct();$('#acct').close();toast('Sesión cerrada');return}acTab=t.dataset.ac;renderAcct()}
   else if(t.dataset.req){const o=db.orders.find(x=>x.id===t.dataset.o);const m=prompt(t.dataset.req==='cambio'?'¿Qué talla necesitas y por qué?':'Cuéntanos el motivo (opcional):');if(m===null)return;o.solicitud={tipo:t.dataset.req,motivo:m,t:now()};logA(`${o.n}: cliente solicitó ${t.dataset.req}`);saveDB();toast('Solicitud enviada');renderAcct()}
   else if(t.dataset.deldir){me.dirs.splice(+t.dataset.deldir,1);saveDB();renderAcct()}
   else if(t.dataset.fav){if($('#acct').open)$('#acct').close();if($('#pg').open)$('#pg').close();openView(t.dataset.fav,null,null)}

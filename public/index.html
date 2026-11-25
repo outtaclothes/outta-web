@@ -1466,7 +1466,7 @@ const consent=()=>LS.get('outta-cookies',null);
 function track(name,data,id){
   id=id||name.toLowerCase()+'.'+now().toString(36)+'.'+Math.random().toString(36).slice(2,6);
   const nav=consent()==='all';
-  if(nav&&window.fbq)try{fbq('track',name,data,{eventID:id})}catch(e){}
+  if(nav&&window.fbq)try{const cd=Object.fromEntries(Object.entries(data||{}).filter(([k])=>k[0]!=='_'));fbq('track',name,cd,{eventID:id})}catch(e){}
   db.events.unshift({name,id,t:now(),data,nav,srv:true,user:!!(me||data&&data._email)});db.events=db.events.slice(0,300);saveDB();
 }
 function ck(){const c=consent(),el=document.querySelector('#ck');if(el)el.hidden=!!c}
@@ -1655,7 +1655,9 @@ function renderAdm(){
       else if(db.cfg.owner.email!==m||db.cfg.owner.hash!==h){$('#al-msg').textContent='Correo o clave incorrectos.';return}
       adOK=true;sessionStorage.setItem('outta-admin','1');renderAdm()};return}
   const att=db.orders.filter(o=>['pagado','preparando'].includes(o.estado)).length,req=db.orders.filter(o=>o.solicitud&&o.estado!=='devuelto').length,low=P.reduce((a,p)=>a+p.v.filter(v=>v.q<=1).length,0);
-  const N=[['inicio','Inicio'],['pedidos','Pedidos',att+req],['inventario','Inventario',low],['productos','Productos'],['clientes','Clientes'],['analitica','Analítica'],['recuperar','Recuperar ventas',recCount()],['cupones','Cupones'],['resenas','Reseñas',db.reviews.filter(r=>r.ok===null).length],['colecciones','Colecciones'],['coleccion','Próxima colección'],['agenda','Agenda'],['diario','Desde el taller'],['lista','Lista y avisos',db.avisos.filter(a=>!a.ok).length],['mensajes','Mensajes',db.msgs.filter(m=>!m.leido).length],['envios','Envíos y contacto'],['marketing','Pixel y CAPI'],['bitacora','Bitácora'],['datos','Exportar / respaldo']];
+  let N=[['inicio','Inicio'],['pedidos','Pedidos',att+req],['inventario','Inventario',low],['productos','Productos'],['clientes','Clientes'],['analitica','Analítica'],['recuperar','Recuperar ventas',recCount()],['cupones','Cupones'],['resenas','Reseñas',db.reviews.filter(r=>r.ok===null).length],['colecciones','Colecciones'],['coleccion','Próxima colección'],['agenda','Agenda'],['diario','Desde el taller'],['lista','Lista y avisos',db.avisos.filter(a=>!a.ok).length],['mensajes','Mensajes',db.msgs.filter(m=>!m.leido).length],['envios','Envíos y contacto'],['marketing','Pixel y CAPI'],['bitacora','Bitácora'],['datos','Exportar / respaldo']];
+  const ROLN={contenido:['marketing','analitica','productos','colecciones','coleccion','agenda','diario','resenas']};
+  if(me&&ROLN[me.rol]){N=N.filter(([k])=>ROLN[me.rol].includes(k));if(!ROLN[me.rol].includes(adTab))adTab='marketing'}
   R.innerHTML=`<div class="ad-wrap"><nav class="ad-nav"><img src="img/wordmark-negro.webp" alt="OUTTA'"><span class="lab2">Panel de dueño</span>${N.map(([k,l,b])=>`<button data-ad="${k}" aria-current="${k===adTab}">${l}${b?`<span class="bd">${b}</span>`:''}</button>`).join('')}<span class="sp"></span><button data-close>← Volver a la tienda</button><button id="ad-out">Cerrar sesión</button></nav><div class="ad-main" id="ad-m"></div></div><aside class="drawer" id="drw"></aside>`;
   $('#ad-out').onclick=()=>{adOK=false;sessionStorage.removeItem('outta-admin');renderAdm()};
   ({inicio:aInicio,pedidos:aPedidos,inventario:aInv,productos:aProd,clientes:aCli,cupones:aCup,coleccion:aCol,analitica:aAna,recuperar:aRec,resenas:aRev,colecciones:aCols,agenda:aAge,diario:aDia,lista:aLista,mensajes:aMsg,envios:aEnv,marketing:aMkt,bitacora:aLog,datos:aDatos})[adTab]();
@@ -1766,11 +1768,12 @@ function aEnv(){const c=db.cfg;
     $('#tx-envios').textContent=TX.envios;$('#tx-contacto').textContent=TX.contacto;$('#tx-credito').textContent=TX.credito;logA('Envíos y textos actualizados');saveDB();toast('Guardado')};
 }
 function aMkt(){const E=db.events;
-  $('#ad-m').innerHTML=H('Pixel y API de conversiones')+`<div class="box"><h3>Configuración</h3><div class="grid2"><div class="fld"><label>Pixel ID de Meta</label><input id="mk-px" value="${esc(db.cfg.pixel)}" placeholder="15–16 dígitos"></div><div class="fld"><label>Token de CAPI</label><input disabled value="Se guarda como secreto del servidor"></div></div>
-   <button class="btn2 dk" id="mk-sv">Guardar Pixel ID</button>
-   <p class="note" style="margin-top:12px">Cada evento lleva un <b>event_id</b> único. El navegador (Pixel) lo envía solo si el visitante aceptó cookies de medición; el servidor (CAPI) lo envía siempre con el mismo event_id y datos cifrados, y Meta los cuenta una sola vez. La compra usa el número de pedido como event_id y sale del pago confirmado, no de la página de gracias.</p></div>
-   <div class="box"><h3>Eventos registrados (${E.length}) <button class="btn2 sm" id="mk-cl">Limpiar</button></h3>${E.length?`<table class="tb"><tr><th>Hora</th><th>Evento</th><th>event_id</th><th>Navegador</th><th>Servidor</th><th class="num">Valor</th></tr>${E.slice(0,80).map(e=>`<tr><td>${fdt(e.t)}</td><td><b>${e.name}</b></td><td style="font-family:IBM Plex Mono,monospace;font-size:10.5px">${esc(e.id)}</td><td>${e.nav?'Sí':'<span class="note">sin consentimiento</span>'}</td><td>Sí (simulado)</td><td class="num">${e.data&&e.data.value?cop(e.data.value):''}</td></tr>`).join('')}</table>`:'<p class="note">Navega por la tienda para ver los eventos.</p>'}</div>`;
-  $('#mk-sv').onclick=()=>{db.cfg.pixel=$('#mk-px').value.replace(/\D/g,'');logA('Pixel ID actualizado');saveDB();toast('Guardado · el Pixel se carga en el dominio propio')};
+  $('#ad-m').innerHTML=H('Pixel y API de conversiones')+`<div class="box"><h3>Configuración</h3><div class="grid2"><div class="fld"><label>Pixel ID (conjunto de datos) de Meta</label><input id="mk-px" value="${esc(db.cfg.pixel||'')}" placeholder="15–16 dígitos" inputmode="numeric"></div><div class="fld"><label>Código de prueba (opcional)</label><input id="mk-ts" value="${esc(db.cfg.metaTest||'')}" placeholder="TEST12345 · solo mientras pruebas"></div></div>
+   <div class="fld"><label>Token de la API de conversiones</label><input disabled value="Se guarda como secreto del servidor (META_TOKEN), nunca aquí"></div>
+   <button class="btn2 dk" id="mk-sv">Guardar</button>
+   <p class="note" style="margin-top:12px">Cada evento lleva un <b>event_id</b> único que comparten el navegador (Pixel) y el servidor (API de conversiones), así Meta lo cuenta una sola vez. Ambos se envían solo si el visitante aceptó las cookies de medición. Correo y celular viajan cifrados (SHA-256). La compra solo se envía si el pago está confirmado en la base de datos y usa el número de pedido como event_id.</p></div>
+   <div class="box"><h3>Eventos de este navegador (${E.length}) <button class="btn2 sm" id="mk-cl">Limpiar</button></h3>${E.length?`<table class="tb"><tr><th>Hora</th><th>Evento</th><th>event_id</th><th>Navegador</th><th>Servidor</th><th class="num">Valor</th></tr>${E.slice(0,80).map(e=>`<tr><td>${fdt(e.t)}</td><td><b>${e.name}</b></td><td style="font-family:IBM Plex Mono,monospace;font-size:10.5px">${esc(e.id)}</td><td>${e.nav?'Sí':'<span class="note">sin consentimiento</span>'}</td><td>${e.srvOk===true?'Sí':e.srvOk===false?'<span class="note">'+esc(e.srvMsg||'no')+'</span>':e.nav?'enviando…':'—'}</td><td class="num">${e.data&&e.data.value?cop(e.data.value):''}</td></tr>`).join('')}</table>`:'<p class="note">Acepta las cookies y navega por la tienda para ver los eventos.</p>'}</div>`;
+  $('#mk-sv').onclick=()=>{db.cfg.pixel=$('#mk-px').value.replace(/\D/g,'');db.cfg.metaTest=$('#mk-ts').value.trim().toUpperCase();logA('Configuración de Meta actualizada');saveDB();toast('Guardado')};
   $('#mk-cl').onclick=()=>{db.events=[];saveDB();renderAdm()};
 }
 function aLog(){$('#ad-m').innerHTML=H('Bitácora')+(db.log.length?`<table class="tb"><tr><th>Fecha</th><th>Cambio</th></tr>${db.log.map(l=>`<tr><td style="white-space:nowrap">${fdt(l.t)}</td><td>${esc(l.txt)}</td></tr>`).join('')}</table>`:'<div class="empty2">Sin cambios todavía.</div>')}
@@ -2123,6 +2126,29 @@ if(LIVE){
   };
 }
 
+/* ====================== META: Pixel + API de conversiones ======================
+   Solo con consentimiento de cookies de medición. Navegador y servidor comparten event_id. */
+if(LIVE){
+  let PX='',pvSent=false;const TRACK_LOCAL=track;
+  const gck=n=>{const m=document.cookie.match('(?:^|; )'+n+'=([^;]*)');return m?decodeURIComponent(m[1]):''};
+  try{const fc=new URLSearchParams(location.search).get('fbclid');if(fc&&!gck('_fbc'))document.cookie=`_fbc=fb.1.${Date.now()}.${fc};max-age=7776000;path=/;SameSite=Lax`}catch(e){}
+  const mkId=n=>n.toLowerCase()+'.'+Date.now().toString(36)+'.'+Math.random().toString(36).slice(2,6);
+  const capi=(name,data,id)=>{const ev=db.events.find(e=>e.id===id);
+    const body={name,id,data:data||{},url:location.href,fbp:gck('_fbp'),fbc:gck('_fbc'),em:(me&&me.email)||(data&&data._email)||'',ph:(me&&me.cel)||'',xid:(me&&me.id)||''};
+    const pid=body.data._pid;body.data=Object.fromEntries(Object.entries(body.data).filter(([k])=>k[0]!=='_'));if(pid)body.pid=pid;
+    fetch('/api/meta/evento',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body),keepalive:true})
+      .then(r=>r.json()).then(r=>{if(ev){ev.srvOk=!!r.ok;ev.srvMsg=r.motivo||''}}).catch(()=>{if(ev){ev.srvOk=false;ev.srvMsg='sin conexión'}})};
+  function loadPixel(){
+    if(!PX||consent()!=='all')return;
+    if(!window.fbq){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init',PX)}
+    if(!pvSent){pvSent=true;track('PageView',{})}
+  }
+  track=function(name,data,id){id=id||mkId(name);TRACK_LOCAL(name,data,id);if(consent()==='all'&&PX)capi(name,data,id)};
+  const _LSm=LS.set;LS.set=function(k,v){_LSm(k,v);if(k==='outta-cookies'&&v==='all')loadPixel()};
+  SB.from('config').select('valor').eq('clave','meta').maybeSingle().then(({data})=>{PX=((data&&data.valor&&data.valor.pixel)||'').replace(/\D/g,'');db.cfg.pixel=PX;loadPixel()});
+}
+
 /* Formularios públicos (también en la vitrina): lista, avisos, mensajes */
 if(LIVE){
   const ins=(t,row)=>SB.from(t).insert(row).then(r=>{if(r.error&&r.error.code!=='23505')console.warn(t,r.error)});
@@ -2249,7 +2275,7 @@ if(TIENDA){
       try{history.replaceState(null,'',location.pathname+'?tienda=prueba')}catch(e){}
       if(!o)return;
       const ord={n:o.numero,tot:o.total,estado:o.estado==='pagado'?'pagado':o.estado,email:pend&&pend.email||'',lines:bag.map(x=>{const p=byId(x.id);return{id:x.id,n:p.n,t:x.t,q:x.q,p:p.p}}),pago:{metodo:'Bold'},nombre:'',apellido:'',cel:'',mkt:false};
-      if(o.estado==='pagado'){track('Purchase',{value:o.total,currency:'COP',content_ids:ord.lines.map(l=>l.id),num_items:ord.lines.reduce((a,l)=>a+l.q,0),order_id:o.numero},o.numero);bag=[];save();count();cupLive=null;cupon=null;LS.set('outta-pago',null);
+      if(o.estado==='pagado'){track('Purchase',{value:o.total,currency:'COP',content_ids:ord.lines.map(l=>l.id),num_items:ord.lines.reduce((a,l)=>a+l.q,0),order_id:o.numero,_pid:back},o.numero);bag=[];save();count();cupLive=null;cupon=null;LS.set('outta-pago',null);
         const fresh=await window.STORE_REMOTE({piezas:P,looks:[],textos:TX,proxima:NX});build()}
       $('#co').showModal();
       if(o.estado==='pendiente'){$('#co-crumb').textContent='Confirmando';$('#co-body').innerHTML=`<div class="done"><p class="lab2">${o.numero}</p><h2 class="ttl">Estamos confirmando tu pago.</h2><p style="font-size:14px;line-height:1.6">Bold todavía no nos confirma la transacción. Si pagaste, te llegará la confirmación al correo en unos minutos; también puedes revisarlo en Rastrear pedido.</p><button class="sec" data-close>Volver a la tienda</button></div>`;return}
@@ -2266,7 +2292,7 @@ if(TIENDA){
   const keyBy=(a,f)=>Object.fromEntries(a.map(x=>[f(x),J_(x)]));
   const snapAll=()=>{SNAP={orders:keyBy(db.orders,o=>o.id),cupones:keyBy(db.cupones,c=>c.code),avisos:keyBy(db.avisos,a=>a.rid),msgs:keyBy(db.msgs,m=>m.rid),reviews:keyBy(db.reviews,r=>r.id),
     agenda:keyBy(db.agenda,a=>a.id),diario:keyBy(db.diario,d=>d.id),cols:J_(db.cols),log:db.log.length?db.log[0].t:0,
-    cfg:J_({b:db.cfg.envBog,n:db.cfg.envNac,g:db.cfg.gratis,wa:db.cfg.wa,ig:db.cfg.ig,tx:db.cfg.tx,nx:db.cfg.nx}),
+    cfg:J_({b:db.cfg.envBog,n:db.cfg.envNac,g:db.cfg.gratis,wa:db.cfg.wa,ig:db.cfg.ig,tx:db.cfg.tx,nx:db.cfg.nx,px:db.cfg.pixel,pt:db.cfg.metaTest}),
     prod:keyBy(P.map(p=>({id:p.id,p:p.p,c:p.c||null,d:p.d||'',st:p.st==='oculta'?'oculto':'activo'})),x=>x.id),
     stock:Object.fromEntries(P.flatMap(p=>p.v.map(v=>[p.id+'|'+v.t,v.q])))}};
   async function loadAdmin(){
@@ -2289,7 +2315,7 @@ if(TIENDA){
     const C=Object.fromEntries((cf.data||[]).map(x=>[x.clave,x.valor]));
     if(C.envios){db.cfg.envBog=+C.envios.bogota||0;db.cfg.envNac=+C.envios.nacional||0;db.cfg.gratis=+C.envios.gratis||0}
     if(C.contacto){db.cfg.wa=C.contacto.whatsapp||'';db.cfg.ig=C.contacto.instagram||'outta.__'}
-    db.cfg.tx=C.textos||{};db.cfg.nx=C.proxima||null;
+    db.cfg.tx=C.textos||{};db.cfg.nx=C.proxima||null;db.cfg.pixel=(C.meta&&C.meta.pixel)||'';db.cfg.metaTest=(C.meta&&C.meta.test)||'';
     db.cols={};(co.data||[]).forEach(c=>{db.cols[c.nombre]={frase:c.frase||'',estado:c.estado}});
     const PM=Object.fromEntries((pr.data||[]).map(x=>[x.id,x]));
     P.forEach(p=>{const r=PM[p.id];if(r){p.p=r.precio;p.c=r.precio_antes||null;p.d=r.descripcion;p.st=r.estado==='oculto'?'oculta':undefined}
@@ -2332,8 +2358,8 @@ if(TIENDA){
     // colecciones
     if(J_(db.cols)!==SNAP.cols)Object.entries(db.cols).forEach(([n,k])=>ops.push(SB.from('colecciones').update({frase:k.frase||null,estado:k.estado||'actual'}).eq('nombre',n).then(err)));
     // configuración
-    const cfgNow=J_({b:db.cfg.envBog,n:db.cfg.envNac,g:db.cfg.gratis,wa:db.cfg.wa,ig:db.cfg.ig,tx:db.cfg.tx,nx:db.cfg.nx});
-    if(cfgNow!==SNAP.cfg){const rows=[{clave:'envios',valor:{bogota:db.cfg.envBog,nacional:db.cfg.envNac,gratis:db.cfg.gratis},publico:true},{clave:'contacto',valor:{whatsapp:db.cfg.wa,correo:'clothesoutta@gmail.com',instagram:db.cfg.ig,direccion:'Calle 38 # 29-29, Bogotá D.C.'},publico:true},{clave:'textos',valor:db.cfg.tx||{},publico:true}];
+    const cfgNow=J_({b:db.cfg.envBog,n:db.cfg.envNac,g:db.cfg.gratis,wa:db.cfg.wa,ig:db.cfg.ig,tx:db.cfg.tx,nx:db.cfg.nx,px:db.cfg.pixel,pt:db.cfg.metaTest});
+    if(cfgNow!==SNAP.cfg){const rows=[{clave:'envios',valor:{bogota:db.cfg.envBog,nacional:db.cfg.envNac,gratis:db.cfg.gratis},publico:true},{clave:'contacto',valor:{whatsapp:db.cfg.wa,correo:'clothesoutta@gmail.com',instagram:db.cfg.ig,direccion:'Calle 38 # 29-29, Bogotá D.C.'},publico:true},{clave:'textos',valor:db.cfg.tx||{},publico:true},{clave:'meta',valor:{pixel:db.cfg.pixel||'',test:db.cfg.metaTest||''},publico:true}];
       if(db.cfg.nx)rows.push({clave:'proxima',valor:Object.assign({},NX||{},db.cfg.nx),publico:true});ops.push(SB.from('config').upsert(rows).then(err))}
     // bitácora: entradas nuevas
     const nuevos=db.log.filter(l=>l.t>SNAP.log);if(nuevos.length)ops.push(SB.from('bitacora').insert(nuevos.reverse().map(l=>({texto:l.txt,usuario:me.id}))).then(err));
@@ -2352,8 +2378,7 @@ if(TIENDA){
       const b=$('#adm-in-btn');if(b&&!me)b.onclick=()=>{$('#adm').close();openAuth('in',()=>openAdm())};return}
     adOK=true;_rAdm();
     const out=$('#ad-out');if(out)out.onclick=async()=>{await SB.auth.signOut();ADM=false;$('#adm').close();toast('Sesión cerrada')};
-    const nav=$('.ad-nav .lab2');if(nav)nav.textContent=`Panel de dueño · ${CFG.modo==='pruebas'?'pagos en pruebas':'en vivo'}`;
-    if(adTab==='marketing'){const n=$('#ad-m .box .note');if(n)n.insertAdjacentHTML('afterend','<p class="warn-box">Los eventos de esta tabla son los de este navegador. El envío por servidor (API de conversiones) se activa con el Pixel ID y el token de Meta.</p>')}
+    const nav=$('.ad-nav .lab2');if(nav)nav.textContent=`${me.rol==='dueno'?'Panel de dueño':me.rol==='contenido'?'Panel · marketing':'Panel · operación'} · ${CFG.modo==='pruebas'?'pagos en pruebas':'en vivo'}`;
     if(adTab==='datos'){const b=$('#dx-rs');if(b){b.closest('.box').remove()}}
   };
   openAdm=async function(){

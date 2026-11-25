@@ -2326,6 +2326,8 @@ if(TIENDA){
   let LISTA=[];
   const _LSget=LS.get;LS.get=function(k,d){if(ADM&&k==='outta-lista')return LISTA;return _LSget(k,d)};
 
+  async function notifyMail(numero,tipo){try{const {data}=await SB.auth.getSession();const r=await fetch('/api/notificar',{method:'POST',headers:{'content-type':'application/json',authorization:'Bearer '+(data.session&&data.session.access_token||'')},body:JSON.stringify({numero,tipo})}).then(r=>r.json());
+    if(r.ok&&!r.repetido)toast(tipo==='enviado'?'Correo con la guía enviado al cliente':'Correo de entrega enviado al cliente');else if(!r.ok)toast('Correo no enviado: '+(r.motivo||r.error||'error'))}catch(e){console.warn(e)}}
   async function syncAll(){
     const ops=[],err=e=>{if(e&&e.error)throw e.error;return e};
     // pedidos
@@ -2335,7 +2337,8 @@ if(TIENDA){
       if(o.guia!==w.guia)up.guia=o.guia;if(o.transp!==w.transp)up.transportadora=o.transp;if(o.nota!==w.nota)up.nota_interna=o.nota;
       if(J_(o.recup)!==J_(w.recup))up.recuperacion=o.recup?{...o.recup,t:new Date(o.recup.t).toISOString()}:null;
       if(J_(o.solicitud)!==J_(w.solicitud))up.solicitud=o.solicitud?{...o.solicitud,t:new Date(o.solicitud.t).toISOString()}:null;
-      if(Object.keys(up).length){up.actualizado=new Date().toISOString();ops.push(SB.from('pedidos').update(up).eq('id',o.id).then(err))}});
+      if(Object.keys(up).length){up.actualizado=new Date().toISOString();const nt=(up.estado==='enviado'||up.estado==='entregado')?up.estado:null;
+        ops.push(SB.from('pedidos').update(up).eq('id',o.id).then(err).then(()=>nt&&notifyMail(o.n,nt)))}});
     // stock (con motivo del último movimiento local)
     P.forEach(p=>p.v.forEach(v=>{const k=p.id+'|'+v.t;if(SNAP.stock[k]!==undefined&&SNAP.stock[k]!==v.q){const mv=db.mov.find(m=>m.id===p.id&&m.talla===v.t);
       ops.push(SB.rpc('ajustar_stock',{p_producto:p.id,p_talla:v.t,p_stock:v.q,p_motivo:(mv&&mv.motivo)||'ajuste'+(mv&&mv.ref?' '+mv.ref:'')}).then(err))}}));
